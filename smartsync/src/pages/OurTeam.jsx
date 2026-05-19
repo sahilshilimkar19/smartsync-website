@@ -38,20 +38,20 @@ const teamMembers = [
         bio: "A passionate investor with over 5 years of equity investment experience. Krishna Satija is a dynamic investment professional with a CA Finalist qualification, an M.A. in Economics, and a B.Com degree. With a strong foundation in finance, his sharp analytical skills and passion for monitoring market trends enable him to identify high-potential investment opportunities.",
     },
     {
-        name: "Athar Syed",
-        role: "Team Lead Equity Research",
-        image: "/team/athar.jpg",
-        bio: "Athar Syed leads the research division with a keen eye for macroeconomic trends and sector-specific analysis. With a strong academic background in finance and economics, he brings rigorous quantitative and qualitative research methodologies to drive data-backed investment decisions. His deep expertise in market dynamics and fundamental analysis forms the backbone of the firm's research capabilities.",
-    },
-    {
         name: "Sahil Shilimkar",
         role: "Senior AI/ML Developer",
         image: "/team/sahil.jpeg",
         bio: "Sahil Shilimkar specializes in building intelligent systems powered by Artificial Intelligence and Machine Learning. He focuses on developing data-driven solutions that enhance research workflows, automate complex data analysis, and generate actionable insights from large financial datasets. With experience in predictive modeling, natural language processing, and data engineering, Sahil works on building scalable AI tools that support smarter decision-making and efficient information processing.",
     },
     {
+        name: "Shivam Rajput",
+        role: "AI/ML Developer",
+        image: "/team/shivam.png",
+        bio: "Shivam Rajput works on designing and implementing AI and Machine Learning solutions that power the firm's research and analytics capabilities. He contributes to building data pipelines, training predictive models, and developing tools that streamline financial data processing. With a strong foundation in machine learning, data engineering, and software development, Shivam focuses on creating reliable, scalable systems that turn raw market data into actionable intelligence.",
+    },
+    {
         name: "Madhav Rathi",
-        role: "Research Analyst",        image: "/team/madhav.jpg",        bio: "Madhav Rathi focuses on generating high-conviction stock ideas through fundamental research and sector analysis. He follows a structured top-down approach, identifying macro and industry trends before evaluating companies and building investment theses. Madhav combines traditional research with AI-driven tools to improve insight generation and research efficiency, with a strong focus on businesses benefiting from India’s long-term growth trends.",
+        role: "Senior Research Analyst",        image: "/team/madhav.jpg",        bio: "Madhav Rathi focuses on generating high-conviction stock ideas through fundamental research and sector analysis. He follows a structured top-down approach, identifying macro and industry trends before evaluating companies and building investment theses. Madhav combines traditional research with AI-driven tools to improve insight generation and research efficiency, with a strong focus on businesses benefiting from India’s long-term growth trends.",
     },
     
 ];
