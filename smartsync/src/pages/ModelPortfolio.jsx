@@ -91,10 +91,10 @@ const ModelPortfolio = () => {
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                                 <div style={{ borderRight: '1px solid rgba(26,26,26,0.1)', paddingRight: '2rem' }}>
                                     <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--color-accent-primary)' }}>Retail</h3>
-                                    <p style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>Investment Amount &lt; INR 30,00,000 per year</p>
+                                    <p style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>Investment Amount &lt; INR 30,00,000</p>
                                     <div style={{ marginBottom: '1rem' }}>
-                                        <p style={{ fontWeight: 500, fontSize: '1rem', marginBottom: '0.35rem', color: 'var(--color-text-secondary)', textDecoration: 'line-through' }}>INR 48,000 per year + 18% GST</p>
-                                        <p style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: '0.25rem', color: 'var(--color-accent-primary)' }}>INR 24,000 per year + 18% GST</p>
+                                        <p style={{ fontWeight: 500, fontSize: '1rem', marginBottom: '0.35rem', color: 'var(--color-text-secondary)', textDecoration: 'line-through' }}>INR 48,000 + 18% GST</p>
+                                        <p style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: '0.25rem', color: 'var(--color-accent-primary)' }}>INR 24,000 + 18% GST</p>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
                                             <span style={{ display: 'inline-block', padding: '0.35rem 0.85rem', background: 'linear-gradient(135deg, #0f766e, #0ea5a5)', color: '#ffffff', fontSize: '0.95rem', fontWeight: 800, letterSpacing: '0.06em', borderRadius: '999px', boxShadow: '0 6px 14px rgba(15, 118, 110, 0.25)' }}>50% OFF</span>
                                             <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#c2410c', letterSpacing: '0.02em', textTransform: 'uppercase' }}>Discount ending soon! Hurry.</span>
@@ -105,10 +105,13 @@ const ModelPortfolio = () => {
                                 </div>
                                 <div>
                                     <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--color-accent-primary)' }}>HNI</h3>
-                                    <p style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>Investment Amount &gt; INR 30,00,000 per year</p>
+                                    <p style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>Investment Amount &gt; INR 30,00,000</p>
                                     <p style={{ fontWeight: 600, fontSize: '1.1rem', marginBottom: '1rem' }}>Minimum INR 48,000 or 1.5% of AUM + 18% GST</p>
                                     <p style={{ fontSize: '0.9rem', marginBottom: '1.5rem' }}>Exclusive Access to Detailed Research of Portfolio Holding Companies. Email and Call Support.</p>
-                                    <button className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }} onClick={() => setIsModalOpen(true)}>Schedule a Call</button>
+                                    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                                        <a href="https://pages.razorpay.com/pl_SfH7WTvnnDFtCp/view" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', display: 'inline-block', textDecoration: 'none' }}>Sign Up</a>
+                                        <button className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }} onClick={() => setIsModalOpen(true)}>Schedule a Call</button>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
