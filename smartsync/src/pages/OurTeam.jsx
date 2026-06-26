@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const teamMembers = [
     {
-        name: "CA Himanshu Shah, CFA",
+        name: "Himanshu Shah, CFA, CA",
         role: "Co-Founder and Chief Investment Officer",
         image: "/team/himanshhu.png",
         bio: "CA Himanshu Shah is a seasoned finance professional with over 10+ years of experience specializing in research, investment strategy, and portfolio management. A qualified Chartered Accountant (CA) and Chartered Financial Analyst (CFA), CA Himanshu Shah has a proven track record of delivering robust financial insights and creating tailored investment solutions for a diverse clientele. Himanshu is known for a strong analytical mindset, strategic investment acumen, and an unwavering commitment to client-centric financial advisory.",
@@ -54,6 +54,18 @@ const teamMembers = [
         role: "Equity Research Intern",
         image: "/team/sandeep.png",
         bio: "Sandeep Agrawal is an Equity Research Intern focused on building strong analytical capabilities through fundamental research and industry analysis. He prepares financial and concall analyses for various companies and contributes to in-depth financial content covering markets and businesses. Driven by continuous learning and a deep curiosity about market dynamics, Sandeep is keen on understanding businesses positioned to benefit from India’s long-term growth trends.",
+    },
+    {
+        name: "Chirag Pursnani",
+        role: "Equity Research Intern",
+        image: "/team/chirag.jpeg",
+        bio: "Chirag Pursnani is an Equity Research Intern, Finance Professional, and CA Finalist with a strong interest in equity research, business valuation, and financial analysis. Having cleared CFA Level I and appeared for CFA Level II, he is dedicated to building expertise in fundamental research and investment analysis. Through disciplined learning and a data-driven approach, he focuses on evaluating businesses, identifying long-term investment opportunities, and delivering objective, well-reasoned research to support informed investment decisions.",
+    },
+    {
+        name: "Raghav Bhatia",
+        role: "Equity Research Intern",
+        image: "/team/raghav.png",
+        bio: "Raghav Bhatia is an Equity Research Intern, CFA Level III Candidate, and Economics graduate with a strong passion for fundamental research and business analysis. He specializes in financial statement analysis, industry research, earnings conference call analysis, and business model evaluation to develop well-researched investment insights. By combining analytical thinking with AI-powered research tools, he continuously enhances the depth, accuracy, and efficiency of his research while strengthening his expertise in long-term investing.",
     },
 
 ];
