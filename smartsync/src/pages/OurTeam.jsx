@@ -19,13 +19,6 @@ const teamMembers = [
         x: "https://twitter.com/akhileshnpathak"
     },
     {
-        name: "Atul Raval",
-        role: "Investment Advisor",
-        image: "/team/raval.jpg",
-        bio: "Passionate about investing in stocks, more from the academic view rather than the monetary side. Mr. Atul graduated in Civil Engineering from L D College of Engineering, Ahmedabad, and did his MBA from B K School of Business Management in 1991. He has a diverse background ranging from civil engineering at the Narmada Dam project to IT implementation, playing a pivotal role in bringing a State PSU to a 95% online working environment.",
-        x: "https://twitter.com/AtulDRaval"
-    },
-    {
         name: "Dr. Deepa Dwivedi",
         role: "Economic Advisor",
         image: "/team/deepa.png",
