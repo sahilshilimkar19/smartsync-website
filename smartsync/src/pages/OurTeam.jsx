@@ -14,7 +14,7 @@ const teamMembers = [
         name: "Akhilesh Pathak",
         role: "Co-Founder and Managing Partner",
         image: "/team/akhilesh.jpg",
-        bio: "Akhilesh has been investing for over 20+ years in listed markets and has deep insights into businesses. He serves as a Board Member, Investor, and Advisor to several startups. He holds a Mechanical Engineering degree from NIT Durgapur and an MDP from IIM Ahmedabad. A strategic thinker and analytics specialist, Akhilesh has over 18 years of proven experience across industries, excelling in Digital Transformation, Business Development, and Large Enterprise Account Management.",
+        bio: "Akhilesh Pathak has 22+ years of investing experience in listed stock markets & brings deep insights from diverse businesses. He serves as a Board Member, Investor, and Advisor to several startups from IITs and NASSCOM Labs CoE. Held leadership positions (at global MNCs – ORACLE, TCS, TERADATA, GSPC group & TEGA Industries) in Digital Transformation, Business Growth and Global Partnerships. He holds a Mechanical Engineering degree from NIT Durgapur and an MDP from IIM Ahmedabad.",
         linkedin: "https://www.linkedin.com/in/akhilesh-pathak-a043b136",
         x: "https://twitter.com/akhileshnpathak"
     },

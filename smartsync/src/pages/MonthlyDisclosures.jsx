@@ -78,7 +78,7 @@ const MonthlyDisclosures = () => {
                                 Annexure B – Formats for investors complaints data to be disclosed monthly by IAs on their website/mobile application
                             </p>
                             <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
-                                Data for the month ending May 2026
+                                Data for the month ending July 2026
                             </p>
 
                             {/* Table 1 — Current Month */}
@@ -170,6 +170,8 @@ const MonthlyDisclosures = () => {
                                             ['10', 'March 2026'],
                                             ['11', 'April 2026'],
                                             ['12', 'May 2026'],
+                                            ['13', 'June 2026'],
+                                            ['14', 'July 2026'],
                                         ].map(([sr, month]) => (
                                             <tr key={sr}>
                                                 <td style={tdStyle}>{sr}</td>
@@ -212,6 +214,14 @@ const MonthlyDisclosures = () => {
                                         <tr>
                                             <td style={tdStyle}>1</td>
                                             <td style={tdLeftStyle}>2025-26</td>
+                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td style={tdStyle}>2</td>
+                                            <td style={tdLeftStyle}>2026-27</td>
                                             <td style={tdStyle}>0</td>
                                             <td style={tdStyle}>0</td>
                                             <td style={tdStyle}>0</td>
