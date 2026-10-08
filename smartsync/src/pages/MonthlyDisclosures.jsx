@@ -78,7 +78,7 @@ const MonthlyDisclosures = () => {
                                 Annexure B – Formats for investors complaints data to be disclosed monthly by IAs on their website/mobile application
                             </p>
                             <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
-                                Data for the month ending July 2026
+                                Data for the month ending September 2026
                             </p>
 
                             {/* Table 1 — Current Month */}
@@ -172,6 +172,8 @@ const MonthlyDisclosures = () => {
                                             ['12', 'May 2026'],
                                             ['13', 'June 2026'],
                                             ['14', 'July 2026'],
+                                            ['15', 'August 2026'],
+                                            ['16', 'September 2026'],
                                         ].map(([sr, month]) => (
                                             <tr key={sr}>
                                                 <td style={tdStyle}>{sr}</td>
