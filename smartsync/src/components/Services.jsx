@@ -21,7 +21,7 @@ const servicesData = [
         description: "Over 130 Clients since August 2023, Focussed on Fundamental Based Long-Term Investing.",
         link: "Try for Free",
         isExternal: false,
-        path: "/stock-advisory-services"
+        path: "/flexi-cap-advisory-services"
     },
     {
         id: 3,
