@@ -54,6 +54,8 @@ npm install
 echo "PORT=5000" > .env
 echo "EMAIL_USER=your-email@gmail.com" >> .env
 echo "EMAIL_PASS=your-app-password" >> .env
+# Optional: where Contact Us inquiries are delivered (this is already the default)
+echo "CONTACT_TO_EMAIL=himanshu.shah@synconic.in" >> .env
 
 # Start the server using PM2
 pm2 start server.js --name "smartsync-api"

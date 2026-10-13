@@ -9,6 +9,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'himanshu.shah@synconic.in';
 
 // Security and Optimization Middleware
 app.use(helmet()); // Sets robust HTTP headers
@@ -51,12 +52,10 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
             }
         });
 
-        const targetEmail = 'aryan.student16@gmail.com';
-
         await transporter.sendMail({
             from: process.env.EMAIL_USER || 'noreply@smartsyncservices.com',
             replyTo: email,
-            to: targetEmail,
+            to: CONTACT_TO_EMAIL,
             subject: `SmartSync Web Inquiry: ${inquiryType} from ${name}`,
             text: `You have received a new inquiry from the SmartSync website.\n\nName: ${name}\nEmail: ${email}\nInquiry Type: ${inquiryType}\n\nMessage:\n${message}`,
         });
