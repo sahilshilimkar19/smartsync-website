@@ -32,14 +32,15 @@
         opacity: 0.4;
     }
 
+    /* Peaks capped at 0.6 (were 0.7 / 0.8) so hero text keeps WCAG AA contrast at the darkest frame */
     33% {
         transform: scale(1.2) translate(8%, 8%) rotate(5deg);
-        opacity: 0.7;
+        opacity: 0.6;
     }
 
     66% {
         transform: scale(0.85) translate(-8%, 10%) rotate(-5deg);
-        opacity: 0.8;
+        opacity: 0.6;
     }
 
     100% {
@@ -159,10 +160,29 @@
     justify-content: center;
 }
 
-.manifesto h3 {
+/* Tagline (not a heading); restates the old h3 look. Forest instead of bronze for contrast over the mesh */
+.manifesto-text {
+    font-family: var(--font-display);
     font-size: 1.75rem;
-    color: var(--color-accent-secondary);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--color-accent-primary);
+    max-width: none;
     margin: 0;
+}
+
+/* Text that sits on the animated mesh uses the darkest text colour (WCAG 1.4.3) */
+.hero .hero-subtitle,
+.hero .stat-label {
+    color: var(--color-text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg-animated {
+        animation: none;
+    }
 }
 
 @media (max-width: 1024px) {

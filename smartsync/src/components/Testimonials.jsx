@@ -49,7 +49,7 @@ const Testimonials = () => {
                             <Quote className="quote-icon" size={48} />
                             <p className="testimonial-text">&ldquo;{t.text}&rdquo;</p>
                             <div className="testimonial-author-info">
-                                <h4 className="testimonial-author">{t.author}</h4>
+                                <h3 className="testimonial-author">{t.author}</h3>
                                 <span className="testimonial-author-title">{t.title}</span>
                             </div>
                         </motion.div>

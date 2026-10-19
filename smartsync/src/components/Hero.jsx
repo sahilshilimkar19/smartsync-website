@@ -70,7 +70,7 @@ const Hero = () => {
                         <span className="stat-val">500+</span>
                     </div>
                     <div className="stat-card manifesto">
-                        <h3><i>Don't predict. Prepare.</i></h3>
+                        <p className="manifesto-text">Don't predict. Prepare.</p>
                     </div>
                 </motion.div>
 

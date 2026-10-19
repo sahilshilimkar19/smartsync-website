@@ -82,12 +82,12 @@ const Services = () => {
                             <p className="service-desc">{service.description}</p>
                             {service.isExternal ? (
                                 <a href={service.path} target="_blank" rel="noopener noreferrer" className="service-link">
-                                    {service.link}
+                                    {service.link}<span className="sr-only"> – {service.title} (opens in a new tab)</span>
                                     <ArrowRight size={16} />
                                 </a>
                             ) : (
                                 <Link to={service.path} className="service-link">
-                                    {service.link}
+                                    {service.link}<span className="sr-only"> – {service.title}</span>
                                     <ArrowRight size={16} />
                                 </Link>
                             )}
