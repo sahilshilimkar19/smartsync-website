@@ -3,15 +3,6 @@
     padding: 8rem 0;
 }
 
-.testimonials .section-header {
-    text-align: center;
-    margin-bottom: 6rem;
-}
-
-.testimonials .section-subtitle {
-    margin: 0 auto;
-}
-
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

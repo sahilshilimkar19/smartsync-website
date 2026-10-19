@@ -10,8 +10,10 @@
     align-items: flex-end;
 }
 
+/* Title stays on one line beside the subtitle (the subtitle wraps instead), with guaranteed breathing room */
 .section-header .section-title {
-    max-width: 500px;
+    flex-shrink: 0;
+    margin-right: 3rem;
 }
 
 .section-header .section-subtitle {

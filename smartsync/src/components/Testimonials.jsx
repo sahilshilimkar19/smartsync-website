@@ -26,7 +26,7 @@ const Testimonials = () => {
         <section className="testimonials section" id="testimonials">
             <div className="container">
                 <motion.div
-                    className="section-header center"
+                    className="section-header"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
