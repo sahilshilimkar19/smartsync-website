@@ -101,7 +101,8 @@
     pointer-events: none;
 }
 
-.nav-item:hover .dropdown-menu {
+/* Open state is driven by Navbar state (click, keyboard or mouse hover) so Escape can always dismiss it */
+.nav-item.is-open .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
