@@ -1,7 +1,7 @@
 import React, { useId, useRef, useState, useSyncExternalStore } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
-import { DUSSEHRA_SLIDES, NAVRATRI_SLIDES, getCampaignPhase, msUntilNextBoundary } from './navratriCampaign';
+import { DUSSEHRA_SLIDES, NAVRATRI_SLIDES, getCampaignPhase, msUntilNextBoundary } from './festiveCampaign';
 import { Dandiya, Diyas, Mandala, NightStars, Sparks, Toran } from './FestiveMotifs';
 import './FestiveCarousel.css';
 
