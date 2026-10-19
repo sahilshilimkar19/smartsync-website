@@ -496,10 +496,6 @@
     }
 }
 
-.fc-slide:not(.is-active) .fc-anim {
-    animation-play-state: paused;
-}
-
 .fc-sr-only {
     position: absolute;
     width: 1px;
@@ -554,6 +550,14 @@
         width: 40px;
         height: 40px;
     }
+}
+
+/* Paused: hidden slides, the pause button, and the band scrolled out of view (kept last so it wins) */
+.fc-slide:not(.is-active) .fc-anim,
+.festive-carousel[data-still="true"] .fc-anim,
+.festive-carousel[data-offscreen="true"] .fc-anim,
+.festive-carousel[data-offscreen="true"] .fc-rise {
+    animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

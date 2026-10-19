@@ -1,4 +1,4 @@
-import React, { useId, useRef, useState, useSyncExternalStore } from 'react';
+import React, { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import { DUSSEHRA_SLIDES, NAVRATRI_SLIDES, getCampaignPhase, msUntilNextBoundary } from './festiveCampaign';
@@ -105,14 +105,25 @@ const Carousel = ({ slides }) => {
     const [userPaused, setUserPaused] = useState(null); // null = follow prefers-reduced-motion
     const [hovered, setHovered] = useState(false);
     const [keyboardFocus, setKeyboardFocus] = useState(false);
+    const [offscreen, setOffscreen] = useState(false);
     const reducedMotion = useSyncExternalStore(subscribeReducedMotion, getReducedMotion);
     const hidden = useSyncExternalStore(subscribeVisibility, getHidden);
     const swipeStart = useRef(null);
+    const sectionRef = useRef(null);
     const viewportId = useId();
 
     const count = slides.length;
     const rotationOn = !(userPaused ?? reducedMotion);
-    const paused = !rotationOn || hovered || keyboardFocus || hidden;
+    const paused = !rotationOn || hovered || keyboardFocus || hidden || offscreen;
+
+    // While the band is scrolled out of view, autoplay and the artwork's animations wait
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section || typeof IntersectionObserver === 'undefined') return undefined;
+        const observer = new IntersectionObserver(([entry]) => setOffscreen(!entry.isIntersecting));
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
 
     const next = () => setActive((a) => (a + 1) % count);
     const prev = () => setActive((a) => (a - 1 + count) % count);
@@ -160,10 +171,13 @@ const Carousel = ({ slides }) => {
 
     return (
         <section
+            ref={sectionRef}
             className="festive-carousel"
             aria-roledescription="carousel"
             aria-label="Festive highlights"
             data-paused={paused}
+            data-still={!rotationOn}
+            data-offscreen={offscreen}
         >
             <div className="fc-panel" data-theme={slides[active].theme} onFocus={handleFocus} onBlur={handleBlur}>
                 <Toran className="fc-toran" />
@@ -173,7 +187,7 @@ const Carousel = ({ slides }) => {
                         type="button"
                         className="fc-control fc-rotation"
                         onClick={() => setUserPaused(rotationOn)}
-                        aria-label={rotationOn ? 'Stop automatic slide show' : 'Start automatic slide show'}
+                        aria-label={rotationOn ? 'Pause slide show and animations' : 'Play slide show and animations'}
                     >
                         {rotationOn ? <Pause size={18} aria-hidden="true" /> : <Play size={18} aria-hidden="true" />}
                     </button>
