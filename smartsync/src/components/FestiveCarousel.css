@@ -1,4 +1,4 @@
-/* Festive carousel — Navratri 2026 */
+/* Festive carousel — Dussehra 2026 */
 
 /* Undo the global h2 / p / button colours and widths from index.css on the dark panel */
 .festive-carousel :where(h2, p, button) {
@@ -19,10 +19,13 @@
 /* Panel — full-bleed band; slides and controls sit on the site's .container grid */
 
 .fc-panel {
-    --fc-bg: #1C352D;
+    --fc-bg: #201A3D;
     --fc-ink: #F7F5F0;
     --fc-accent: #F2A33A;
+    --fc-glow: rgba(242, 163, 58, 0.2);
+    --fc-horizon: transparent;
     --fc-glow-x: calc(50% + 300px); /* centre of the art column */
+    --fc-cycle: 7s; /* one slide's autoplay time, and the length of the bow's loop */
     position: relative;
     isolation: isolate;
     display: flex;
@@ -31,12 +34,13 @@
     color: var(--fc-ink);
     background-color: var(--fc-bg);
     background-image:
-        radial-gradient(500px circle at var(--fc-glow-x) 42%, rgba(242, 163, 58, 0.2), transparent),
+        radial-gradient(500px circle at var(--fc-glow-x) 42%, var(--fc-glow), transparent),
+        radial-gradient(1200px 280px at 50% 118%, var(--fc-horizon), transparent),
         radial-gradient(520px circle at 6% 100%, rgba(158, 124, 80, 0.18), transparent);
     transition: background-color 0.6s ease;
 }
 
-/* Bandhani dot texture, shown only in the side gutters beyond the 1200px content */
+/* Gold star dust, shown only in the side gutters beyond the 1200px content */
 .fc-panel::before {
     content: '';
     position: absolute;
@@ -44,10 +48,10 @@
     z-index: -1;
     pointer-events: none;
     background-image:
-        radial-gradient(circle, rgba(242, 163, 58, 0.22) 1.5px, transparent 2px),
-        radial-gradient(circle, rgba(247, 245, 240, 0.12) 1px, transparent 1.5px);
-    background-size: 22px 22px;
-    background-position: 0 0, 11px 11px;
+        radial-gradient(circle, rgba(246, 198, 107, 0.4) 1.2px, transparent 1.8px),
+        radial-gradient(circle, rgba(247, 245, 240, 0.2) 0.8px, transparent 1.3px);
+    background-size: 46px 46px, 31px 31px;
+    background-position: 0 0, 17px 13px;
     -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - 760px), transparent calc(50% - 600px), transparent calc(50% + 600px), #000 calc(50% + 760px));
     mask-image: linear-gradient(90deg, #000 calc(50% - 760px), transparent calc(50% - 600px), transparent calc(50% + 600px), #000 calc(50% + 760px));
 }
@@ -65,16 +69,21 @@
     background: linear-gradient(#B3261E 0 1.5px, transparent 1.5px 4px, #9E7C50 4px 6px);
 }
 
-.fc-panel[data-theme="forest"] {
-    --fc-bg: #1C352D;
+/* Dusk: indigo sky with a saffron horizon */
+.fc-panel[data-theme="dusk"] {
+    --fc-bg: #201A3D;
+    --fc-glow: rgba(242, 163, 58, 0.22);
+    --fc-horizon: rgba(224, 123, 36, 0.3);
 }
 
 .fc-panel[data-theme="maroon"] {
     --fc-bg: #4A1D1F;
+    --fc-glow: rgba(242, 163, 58, 0.2);
 }
 
-.fc-panel[data-theme="indigo"] {
-    --fc-bg: #1D2243;
+.fc-panel[data-theme="forest"] {
+    --fc-bg: #1C352D;
+    --fc-glow: rgba(246, 198, 107, 0.2);
 }
 
 .fc-toran {
@@ -283,7 +292,7 @@
     inset: 0;
     background-color: var(--fc-accent);
     transform-origin: left center;
-    animation: fc-progress 6s linear forwards;
+    animation: fc-progress var(--fc-cycle) linear forwards;
 }
 
 .festive-carousel[data-paused="true"] .fc-fill {
@@ -314,20 +323,10 @@
     grid-area: 1 / 1;
 }
 
-.fc-art-mandala {
-    width: clamp(220px, 24vw, 320px);
+.fc-art-bow {
+    width: min(100%, clamp(250px, 27vw, 370px));
     height: auto;
-    aspect-ratio: 1;
-}
-
-.fc-art-faint {
-    opacity: 0.35;
-}
-
-.fc-art-dandiya {
-    width: clamp(130px, 15vw, 190px);
-    height: auto;
-    aspect-ratio: 1;
+    aspect-ratio: 400 / 320;
 }
 
 .fc-art-sparks {
@@ -337,19 +336,20 @@
     height: 100%;
 }
 
-.fc-art-diyas {
-    width: clamp(240px, 28vw, 360px);
+.fc-art-sun,
+.fc-art-leaves {
+    width: min(100%, clamp(250px, 27vw, 380px));
     height: auto;
-    align-self: end;
+    aspect-ratio: 4 / 3;
 }
 
-.fc-art-stars {
-    width: 100%;
-    max-width: 380px;
-    height: auto;
-}
-
-/* Motif motion */
+/*
+ * Motion. Three kinds of animation:
+ *  .fc-anim — loops; paused on hidden slides, by the pause button and while off-screen.
+ *  .fc-seq  — entrance sequences, scoped to the active slide so they replay on every visit.
+ *  The base styles are always the finished (resting) state, so leaving a slide never flashes,
+ *  and reduced motion falls back to a still poster frame.
+ */
 
 .fc-strand {
     transform-box: fill-box;
@@ -365,54 +365,6 @@
 
     to {
         transform: rotate(4deg);
-    }
-}
-
-.fc-spin {
-    animation: fc-spin 80s linear infinite;
-}
-
-@keyframes fc-spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.fc-tap {
-    transform-box: fill-box;
-    transform-origin: 50% 100%;
-    animation: fc-tap 2.8s ease-in-out infinite;
-}
-
-.fc-tap-mirror {
-    animation-name: fc-tap-mirror;
-}
-
-@keyframes fc-tap {
-    0%, 60%, 100% {
-        transform: rotate(0deg);
-    }
-
-    75% {
-        transform: rotate(5deg);
-    }
-
-    85% {
-        transform: rotate(-1deg);
-    }
-}
-
-@keyframes fc-tap-mirror {
-    0%, 60%, 100% {
-        transform: rotate(0deg);
-    }
-
-    75% {
-        transform: rotate(-5deg);
-    }
-
-    85% {
-        transform: rotate(1deg);
     }
 }
 
@@ -437,62 +389,487 @@
     }
 }
 
-.fc-flame {
+/* Victory — one cycle per slide visit: nock (0–0.4s), draw (0.6–1.5s), loose (1.7s), arrow lands (2.25s),
+   fireworks (2.25s, 2.6s, 3s), then rest until the cycle restarts */
+
+.fc-string {
     transform-box: fill-box;
+}
+
+.fc-string-top {
+    transform-origin: 50% 0;
+}
+
+.fc-string-bottom {
     transform-origin: 50% 100%;
-    animation: fc-flicker 1.6s ease-in-out infinite alternate;
-    animation-delay: var(--d, 0s);
 }
 
-@keyframes fc-flicker {
-    0% {
-        transform: scale(1, 1) skewX(0deg);
-    }
-
-    50% {
-        transform: scale(0.94, 1.08) skewX(-3deg);
-    }
-
-    100% {
-        transform: scale(1.04, 0.95) skewX(2deg);
-    }
+.fc-arrow,
+.fc-trail,
+.fc-burst,
+.fc-sparkle {
+    opacity: 0;
 }
 
-.fc-glow {
+.fc-burst,
+.fc-sparkle {
     transform-box: fill-box;
     transform-origin: 50% 50%;
-    animation: fc-glow 2.4s ease-in-out infinite alternate;
-    animation-delay: var(--d, 0s);
 }
 
-@keyframes fc-glow {
+.fc-slide.is-active .fc-arrow {
+    animation: fc-arrow var(--fc-cycle) infinite;
+}
+
+.fc-slide.is-active .fc-string-top {
+    animation: fc-string-top var(--fc-cycle) infinite;
+}
+
+.fc-slide.is-active .fc-string-bottom {
+    animation: fc-string-bottom var(--fc-cycle) infinite;
+}
+
+.fc-slide.is-active .fc-trail {
+    animation: fc-trail var(--fc-cycle) infinite;
+}
+
+.fc-slide.is-active .fc-burst {
+    animation: fc-burst var(--fc-cycle) var(--d, 0s) infinite both;
+}
+
+.fc-sparkle {
+    animation: fc-sparkle 4.6s ease-out var(--d, 0s) infinite;
+}
+
+.fc-sparkle-slow {
+    animation-duration: 5.4s;
+}
+
+@keyframes fc-arrow {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    5.7% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    8.6% {
+        transform: translateX(0);
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    21.4% {
+        transform: translateX(-36px);
+    }
+
+    24.3% {
+        opacity: 1;
+        transform: translateX(-36px);
+        animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    32.1%,
+    100% {
+        opacity: 0;
+        transform: translateX(104px);
+    }
+}
+
+/* rotate(±20.56deg) scaleY(1.068): each 96-unit half reaches the nock point 36 units behind the rest line */
+@keyframes fc-string-top {
+    0%,
+    8.6% {
+        transform: none;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    21.4%,
+    24.3% {
+        transform: rotate(20.56deg) scaleY(1.068);
+        animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    25.7% {
+        transform: rotate(-3deg) scaleY(1);
+    }
+
+    27.1% {
+        transform: rotate(1.4deg) scaleY(1);
+    }
+
+    28.6%,
+    100% {
+        transform: none;
+    }
+}
+
+@keyframes fc-string-bottom {
+    0%,
+    8.6% {
+        transform: none;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    21.4%,
+    24.3% {
+        transform: rotate(-20.56deg) scaleY(1.068);
+        animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    25.7% {
+        transform: rotate(3deg) scaleY(1);
+    }
+
+    27.1% {
+        transform: rotate(-1.4deg) scaleY(1);
+    }
+
+    28.6%,
+    100% {
+        transform: none;
+    }
+}
+
+/* Same easing and timing as the arrow's flight, so the trail's head stays on the arrow's tip */
+@keyframes fc-trail {
+    0%,
+    24.3% {
+        opacity: 0;
+        stroke-dashoffset: 1;
+        animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
+    }
+
+    25% {
+        opacity: 0.9;
+    }
+
+    32.1% {
+        opacity: 0.9;
+        stroke-dashoffset: 0;
+    }
+
+    42%,
+    100% {
+        opacity: 0;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fc-burst {
+    0% {
+        opacity: 0;
+        transform: scale(0.15);
+        animation-timing-function: cubic-bezier(0.15, 0.7, 0.3, 1);
+    }
+
+    3% {
+        opacity: 1;
+    }
+
+    15% {
+        opacity: 0.85;
+    }
+
+    20%,
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+@keyframes fc-sparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+    8% {
+        opacity: 0.9;
+    }
+
+    30%,
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+/* Vices — ten words appear, an arrow crosses each row and strikes each word out as it passes, DISCIPLINE rises */
+
+.fc-vices {
+    container-type: inline-size;
+    width: 100%;
+    max-width: 420px;
+    display: grid;
+    justify-items: center;
+    gap: 0.25rem;
+}
+
+/* An arrow takes 0.9s to cross a row; it passes the centre of column c about (c + 0.5) × 0.15s after the row starts */
+.fc-vice-row {
+    --row-start: calc(1.1s + var(--r, 0) * 0.35s);
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+    padding: 0 6px;
+    overflow: hidden;
+}
+
+.fc-vice {
+    position: relative;
+    justify-self: center;
+    padding: 0.75em 0;
+    font-family: var(--font-body);
+    font-size: clamp(10px, 3.5cqi, 14px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.fc-vice-word {
+    display: inline-block;
+    opacity: 0.4;
+}
+
+.fc-vice::after {
+    content: '';
+    position: absolute;
+    left: -8%;
+    right: -8%;
+    top: 50%;
+    height: 2px;
+    margin-top: -1px;
+    border-radius: 2px;
+    background-color: var(--fc-accent);
+    transform: rotate(-4deg);
+    transform-origin: left center;
+}
+
+.fc-slide.is-active .fc-vice-word {
+    animation:
+        fc-vice-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) calc(0.3s + (var(--r, 0) * 5 + var(--c, 0)) * 0.05s) both,
+        fc-vice-dim 0.35s ease calc(var(--row-start) + (var(--c, 0) + 0.5) * 0.15s + 0.05s) forwards;
+}
+
+.fc-slide.is-active .fc-vice::after {
+    animation: fc-strike 0.28s cubic-bezier(0.3, 0, 0.2, 1) calc(var(--row-start) + (var(--c, 0) + 0.5) * 0.15s - 0.04s) both;
+}
+
+.fc-vice-flight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.fc-vice-arrow {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    display: block;
+    width: 72px;
+    height: 12px;
+    margin-top: -6px;
+}
+
+.fc-slide.is-active .fc-vice-flight {
+    animation: fc-flight 0.9s linear var(--row-start) both;
+}
+
+.fc-virtue {
+    position: relative;
+    isolation: isolate;
+    margin-top: 0.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 9cqi, 2.4rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    padding-left: 0.22em; /* balances the trailing letter-spacing */
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.fc-virtue::before {
+    content: '';
+    position: absolute;
+    inset: -60% -12%;
+    z-index: -1;
+    background: radial-gradient(closest-side, rgba(242, 163, 58, 0.3), transparent);
+}
+
+.fc-virtue-text {
+    display: inline-block;
+    color: #F6C66B;
+    background-image: linear-gradient(105deg, #F2A33A 0%, #F6C66B 35%, #FFF3D6 50%, #F6C66B 65%, #F2A33A 100%);
+    background-size: 300% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fc-shine 5s ease-in-out 1s infinite;
+}
+
+.fc-slide.is-active .fc-virtue {
+    animation: fc-virtue-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both;
+}
+
+@keyframes fc-vice-in {
     from {
-        opacity: 0.12;
-        transform: scale(0.9);
+        opacity: 0;
+        transform: translateY(8px);
     }
 
     to {
-        opacity: 0.28;
-        transform: scale(1.1);
+        opacity: 1;
+        transform: none;
     }
 }
 
-.fc-twinkle {
+@keyframes fc-vice-dim {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.4;
+    }
+}
+
+@keyframes fc-strike {
+    from {
+        transform: rotate(-4deg) scaleX(0);
+    }
+}
+
+@keyframes fc-flight {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    8%,
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(calc(100% + 72px));
+    }
+}
+
+@keyframes fc-virtue-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.94);
+    }
+}
+
+@keyframes fc-shine {
+    0% {
+        background-position: 100% 0;
+    }
+
+    60%,
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@media (forced-colors: active) {
+    .fc-virtue-text {
+        background-image: none;
+        -webkit-text-fill-color: currentColor;
+    }
+}
+
+/* Dawn — the sun rises from the water, rays turn slowly, gold leaves drift down */
+
+.fc-slide.is-active .fc-rise-sun {
+    animation: fc-sun-rise 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.fc-rays {
     transform-box: fill-box;
     transform-origin: 50% 50%;
-    animation: fc-twinkle 3s ease-in-out infinite;
-    animation-delay: var(--d, 0s);
+    animation: fc-spin 90s linear infinite;
 }
 
-@keyframes fc-twinkle {
-    0%, 100% {
-        opacity: 0.35;
-        transform: scale(0.7);
+.fc-ripple {
+    opacity: 0.5;
+    animation: fc-ripple 3.2s ease-in-out var(--d, 0s) infinite alternate;
+}
+
+.fc-leaf-fall {
+    animation: fc-leaf-fall var(--dur, 12s) linear var(--d, 0s) infinite;
+}
+
+.fc-leaf-sway {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+    animation: fc-leaf-sway 3.4s ease-in-out var(--d, 0s) infinite alternate;
+}
+
+@keyframes fc-sun-rise {
+    from {
+        transform: translateY(84px);
+    }
+}
+
+@keyframes fc-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fc-ripple {
+    from {
+        opacity: 0.25;
+        transform: translateX(-6px);
     }
 
-    50% {
-        opacity: 1;
-        transform: scale(1);
+    to {
+        opacity: 0.7;
+        transform: translateX(6px);
+    }
+}
+
+@keyframes fc-leaf-fall {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    10%,
+    80% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(300px);
+    }
+}
+
+@keyframes fc-leaf-sway {
+    from {
+        transform: translateX(-14px) rotate(-28deg);
+    }
+
+    to {
+        transform: translateX(14px) rotate(24deg);
     }
 }
 
@@ -514,29 +891,38 @@
     padding-top: clamp(2.5rem, 5vw, 4rem);
 }
 
+/* Phones: the art becomes a band above the copy, and its glow stays inside that band so the copy keeps its contrast */
 @media (max-width: 768px) {
     .fc-panel {
-        --fc-glow-x: 80%;
+        background-image:
+            radial-gradient(1200px 280px at 50% 118%, var(--fc-horizon), transparent),
+            radial-gradient(300px circle at 6% 100%, rgba(158, 124, 80, 0.18), transparent);
     }
 
     .fc-slide {
         grid-template-columns: 1fr;
+        align-content: start;
+        gap: 1rem;
         min-height: 0;
         padding-top: 4rem;
-        overflow: hidden;
     }
 
     .fc-art {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
+        order: -1;
         min-height: 0;
-        opacity: 0.22;
-        pointer-events: none;
+        height: clamp(130px, 40vw, 190px);
+        background-image: radial-gradient(closest-side, var(--fc-glow), transparent);
     }
 
-    /* Keeps the risk disclaimer on the advisory slide clear of artwork */
-    .fc-art-diyas {
+    .fc-art-bow,
+    .fc-art-sun,
+    .fc-art-leaves {
+        width: auto;
+        height: 100%;
+    }
+
+    /* Keeps the advisory slide and its risk disclaimer uncluttered */
+    .fc-slide[data-art="vices"] .fc-art {
         display: none;
     }
 }
@@ -556,14 +942,45 @@
 .fc-slide:not(.is-active) .fc-anim,
 .festive-carousel[data-still="true"] .fc-anim,
 .festive-carousel[data-offscreen="true"] .fc-anim,
-.festive-carousel[data-offscreen="true"] .fc-rise {
+.festive-carousel[data-offscreen="true"] .fc-seq,
+.festive-carousel[data-offscreen="true"] .fc-rise,
+.festive-carousel[data-offscreen="true"] .fc-vice::after {
     animation-play-state: paused;
 }
 
+/* Reduced motion: no animation; each slide shows a still poster frame */
 @media (prefers-reduced-motion: reduce) {
-    .fc-anim,
-    .fc-slide.is-active .fc-rise {
-        animation: none;
+    .festive-carousel .fc-anim,
+    .festive-carousel .fc-seq,
+    .festive-carousel .fc-rise,
+    .festive-carousel .fc-vice::after {
+        animation: none !important;
+    }
+
+    .festive-carousel .fc-arrow {
+        opacity: 1;
+        transform: translateX(-36px);
+    }
+
+    .festive-carousel .fc-string-top {
+        transform: rotate(20.56deg) scaleY(1.068);
+    }
+
+    .festive-carousel .fc-string-bottom {
+        transform: rotate(-20.56deg) scaleY(1.068);
+    }
+
+    .festive-carousel .fc-burst {
+        opacity: 0.9;
+    }
+
+    .festive-carousel .fc-sparkle {
+        opacity: 0.7;
+    }
+
+    .festive-carousel .fc-leaf-fall {
+        opacity: 0.9;
+        transform: translateY(110px);
     }
 
     .fc-panel,

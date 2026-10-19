@@ -1,23 +1,23 @@
 import React, { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
-import { DUSSEHRA_SLIDES, NAVRATRI_SLIDES, getCampaignPhase, msUntilNextBoundary } from './festiveCampaign';
-import { Dandiya, Diyas, Mandala, NightStars, Sparks, Toran } from './FestiveMotifs';
+import { DUSSEHRA_SLIDES, isCampaignLive, msUntilNextBoundary } from './festiveCampaign';
+import { GoldLeaves, RisingSun, Sparks, Toran, VictoryBow } from './FestiveMotifs';
 import './FestiveCarousel.css';
 
 const SWIPE_THRESHOLD = 50;
 const MAX_TIMEOUT = 2147483647;
 
-// Dev-only preview of other phases: ?fcPhase=navratri | dussehra | off
-const DEV_PHASE = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('fcPhase') : null;
+// Dev-only preview outside the campaign window: ?fcPreview=on | off
+const DEV_PREVIEW = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('fcPreview') : null;
 
-const getPhase = () => {
-    if (DEV_PHASE === 'off') return null;
-    if (DEV_PHASE === 'navratri' || DEV_PHASE === 'dussehra') return DEV_PHASE;
-    return getCampaignPhase(Date.now());
+const getLive = () => {
+    if (DEV_PREVIEW === 'on') return true;
+    if (DEV_PREVIEW === 'off') return false;
+    return isCampaignLive(Date.now());
 };
 
-// Re-renders at each campaign boundary, so an open tab switches to Dussehra and then hides itself.
+// Re-renders at each campaign boundary, so an open tab shows the carousel when it starts and hides it when it ends.
 const subscribeClock = (onChange) => {
     let timer;
     const arm = () => {
@@ -61,24 +61,56 @@ const isKeyboardFocus = (element) => {
     }
 };
 
-const GarbaArt = () => (
+const VictoryArt = () => (
     <>
-        <Mandala className="fc-art-mandala fc-anim fc-spin" />
-        <Dandiya className="fc-art-dandiya" />
+        <VictoryBow className="fc-art-bow" />
         <Sparks className="fc-art-sparks" />
     </>
 );
 
-const DiyasArt = () => (
+// Ravana's ten heads as ten habits of bad investing, struck out one by one by a passing arrow
+const VICE_ROWS = [
+    ['Greed', 'Fear', 'FOMO', 'Panic', 'Hype'],
+    ['Tips', 'Rumour', 'Haste', 'Ego', 'Herd']
+];
+
+const ViceArrow = () => (
+    <svg className="fc-vice-arrow" viewBox="0 0 72 12" focusable="false">
+        <path d="M0 6H40" stroke="#FFE3A3" strokeWidth="1.5" strokeLinecap="round" opacity="0.45" />
+        <path d="M24 6L18 1H26L31 6ZM24 6L18 11H26L31 6Z" fill="#B3261E" />
+        <rect x="22" y="5" width="42" height="2" rx="1" fill="#FFE3A3" />
+        <path d="M60 1.5L72 6L60 10.5L63 6Z" fill="#F6C66B" />
+    </svg>
+);
+
+const VicesArt = () => (
+    <div className="fc-vices">
+        {VICE_ROWS.map((row, r) => (
+            <div key={r} className="fc-vice-row" style={{ '--r': r }}>
+                {row.map((word, c) => (
+                    <span key={word} className="fc-vice" style={{ '--c': c }}>
+                        <span className="fc-vice-word fc-seq">{word}</span>
+                    </span>
+                ))}
+                <span className="fc-vice-flight fc-seq">
+                    <ViceArrow />
+                </span>
+            </div>
+        ))}
+        <span className="fc-virtue fc-seq">
+            <span className="fc-virtue-text fc-anim">Discipline</span>
+        </span>
+    </div>
+);
+
+const DawnArt = () => (
     <>
-        <Mandala className="fc-art-mandala fc-art-faint fc-anim fc-spin" />
-        <Diyas className="fc-art-diyas" />
+        <RisingSun className="fc-art-sun" />
+        <GoldLeaves className="fc-art-leaves" />
     </>
 );
 
-const StarsArt = () => <NightStars className="fc-art-stars" />;
-
-const ART = { garba: GarbaArt, diyas: DiyasArt, stars: StarsArt };
+const ART = { victory: VictoryArt, vices: VicesArt, dawn: DawnArt };
 
 const SlideCta = ({ cta }) => {
     const className = `fc-btn${cta.ghost ? ' fc-btn-ghost' : ''}`;
@@ -232,6 +264,7 @@ const Carousel = ({ slides }) => {
                             <div
                                 key={slide.id}
                                 className={`fc-slide container${i === active ? ' is-active' : ''}`}
+                                data-art={slide.art}
                                 role="group"
                                 aria-roledescription="slide"
                                 aria-label={`${i + 1} of ${count}`}
@@ -261,9 +294,9 @@ const Carousel = ({ slides }) => {
 };
 
 const FestiveCarousel = () => {
-    const phase = useSyncExternalStore(subscribeClock, getPhase);
-    if (!phase) return null;
-    return <Carousel slides={phase === 'dussehra' ? DUSSEHRA_SLIDES : NAVRATRI_SLIDES} />;
+    const live = useSyncExternalStore(subscribeClock, getLive);
+    if (!live) return null;
+    return <Carousel slides={DUSSEHRA_SLIDES} />;
 };
 
 export default FestiveCarousel;
