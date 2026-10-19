@@ -74,9 +74,8 @@ cd ../smartsync
 # Install dependencies
 npm install
 
-# In ContactUs.jsx, your fetch request defaults to localhost:5000. When hosted,
-# we need it to point to your new IP so it routes through Nginx.
-echo "VITE_API_URL=http://<your-ec2-public-ip>/api/contact" > .env
+# No .env is needed: the contact form posts to /api/contact on the site's own domain,
+# which Nginx forwards to the backend (see step 7). Set VITE_API_URL only to override that.
 
 # Build the frontend (This will create a `dist` folder)
 npm run build

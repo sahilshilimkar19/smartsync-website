@@ -22,10 +22,9 @@ const ContactUs = () => {
         setSubmitStatus({ success: null, message: '' });
 
         try {
-            // Using relative path for testing, or API_URL in production. 
-            // Vercel frontends hit relative URLs if backend is hosted same place, but here 
-            // Railway backend implies an external API. Assuming Railway port config:
-            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/contact';
+            // Same-origin by default: Nginx proxies /api/ to the backend in production, Vite proxies it in local dev.
+            // VITE_API_URL is only an optional override.
+            const apiUrl = import.meta.env.VITE_API_URL || '/api/contact';
 
             const response = await fetch(apiUrl, {
                 method: 'POST',
