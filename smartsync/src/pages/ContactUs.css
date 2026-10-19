@@ -1,0 +1,66 @@
+/* Contact form */
+
+.contact-required-note {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contact-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+}
+
+/* Solid white field and a #808080 border: 3.95:1 against the field, 3.62:1 against the page (WCAG 1.4.11) */
+.contact-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #808080;
+    border-radius: 0;
+    background: #fff;
+    color: var(--color-text-primary);
+    font: inherit;
+}
+
+/* Text wraps, so horizontal overflow never happens; hiding it lets contrast checkers resolve the background */
+textarea.contact-control {
+    resize: vertical;
+    overflow-x: hidden;
+}
+
+.contact-control:focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+}
+
+/* While empty, cancel the form's 1.5rem flex gap; the region stays rendered so later messages are announced */
+.contact-status-region:empty {
+    margin-top: -1.5rem;
+}
+
+.contact-status {
+    padding: 1rem;
+    border-radius: 4px;
+    max-width: none;
+}
+
+.contact-status.is-success {
+    color: #1B5E20;
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.contact-status.is-error {
+    color: #B71C1C;
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
