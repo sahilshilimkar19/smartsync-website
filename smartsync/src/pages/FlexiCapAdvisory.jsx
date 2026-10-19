@@ -1,9 +1,11 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 
 const FlexiCapAdvisory = () => {
+    usePageTitle('Flexi-Cap Advisory Services | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container">
                     <motion.div
@@ -111,7 +113,7 @@ const FlexiCapAdvisory = () => {
                                     <p style={{ fontWeight: 500, fontSize: '1rem', marginBottom: '0.35rem', color: 'var(--color-text-secondary)', textDecoration: 'line-through' }}>INR 48,000 per year + 18% GST</p>
                                     <p style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: '0.25rem', color: 'var(--color-accent-primary)' }}>INR 24,000 per year + 18% GST</p>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
-                                        <span style={{ display: 'inline-block', padding: '0.35rem 0.85rem', background: 'linear-gradient(135deg, #0f766e, #0ea5a5)', color: '#ffffff', fontSize: '0.95rem', fontWeight: 800, letterSpacing: '0.06em', borderRadius: '999px', boxShadow: '0 6px 14px rgba(15, 118, 110, 0.25)' }}>50% OFF</span>
+                                        <span style={{ display: 'inline-block', padding: '0.35rem 0.85rem', background: '#0f766e', color: '#ffffff', fontSize: '0.95rem', fontWeight: 800, letterSpacing: '0.06em', borderRadius: '999px', boxShadow: '0 6px 14px rgba(15, 118, 110, 0.25)' }}>50% OFF</span>
                                         <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#c2410c', letterSpacing: '0.02em', textTransform: 'uppercase' }}>Discount ending soon! Hurry.</span>
                                     </div>
                                 </div>
@@ -165,7 +167,7 @@ const FlexiCapAdvisory = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 
