@@ -1,4 +1,5 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 
 const blogPosts = [
@@ -41,8 +42,9 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+    usePageTitle('Blog | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container">
                     <motion.div
@@ -77,14 +79,14 @@ const Blog = () => {
                                     {post.excerpt}
                                 </p>
                                 <a href={post.link} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-text-primary)', fontWeight: 600, fontSize: '0.95rem', borderBottom: '1px solid currentColor', paddingBottom: '0.2rem', textDecoration: 'none' }}>
-                                    Read more &rarr;
+                                    Read more<span className="sr-only"> about {post.title} (opens in a new tab)</span> <span aria-hidden="true">&rarr;</span>
                                 </a>
                             </motion.article>
                         ))}
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 

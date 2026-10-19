@@ -1,4 +1,5 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 
 const tableStyle = {
@@ -29,9 +30,13 @@ const tdLeftStyle = {
     textAlign: 'left',
 };
 
+// Table titles are h3 elements; font, line height and spacing keep the original body-text look
 const sectionTitleStyle = {
+    fontFamily: 'var(--font-body)',
     fontSize: '1.15rem',
     fontWeight: 700,
+    lineHeight: 1.6,
+    letterSpacing: 'normal',
     color: 'var(--color-accent-primary)',
     marginBottom: '1rem',
     marginTop: '2.5rem',
@@ -45,8 +50,9 @@ const noteStyle = {
 };
 
 const MonthlyDisclosures = () => {
+    usePageTitle('Monthly Disclosures | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container" style={{ maxWidth: '1000px' }}>
                     <motion.div
@@ -71,18 +77,18 @@ const MonthlyDisclosures = () => {
                             transition={{ duration: 0.6, delay: 0.1 }}
                             style={{ background: 'var(--color-bg-surface)', padding: '3rem', border: '1px solid rgba(26, 26, 26, 0.1)' }}
                         >
-                            <h2 style={{ fontSize: '1.5rem', marginBottom: '0.75rem', fontWeight: 600 }}>
+                            <h2 id="md-current-title" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', fontWeight: 600 }}>
                                 Monthly Disclosures of Investor Complaints
                             </h2>
                             <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', marginBottom: '0.25rem' }}>
                                 Annexure B – Formats for investors complaints data to be disclosed monthly by IAs on their website/mobile application
                             </p>
-                            <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
+                            <p id="md-current-period" style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
                                 Data for the month ending September 2026
                             </p>
 
-                            {/* Table 1 — Current Month */}
-                            <div style={{ overflowX: 'auto' }}>
+                            {/* Table 1 — Current Month (scroll wrappers are focusable so keyboard users can scroll them) */}
+                            <div className="table-scroll" tabIndex={0} role="region" aria-labelledby="md-current-title md-current-period">
                                 <table style={tableStyle}>
                                     <thead>
                                         <tr>
@@ -143,8 +149,8 @@ const MonthlyDisclosures = () => {
                             <p style={noteStyle}>^ Average Resolution time is the sum total of time taken to resolve each complaint in days, in the current month divided by the total number of complaints resolved in the current month.</p>
 
                             {/* Table 2 — Monthly Trend */}
-                            <p style={sectionTitleStyle}>The trend of monthly disposal of complaints</p>
-                            <div style={{ overflowX: 'auto' }}>
+                            <h3 id="md-monthly-trend-title" style={sectionTitleStyle}>The trend of monthly disposal of complaints</h3>
+                            <div className="table-scroll" tabIndex={0} role="region" aria-labelledby="md-monthly-trend-title">
                                 <table style={tableStyle}>
                                     <thead>
                                         <tr>
@@ -199,8 +205,8 @@ const MonthlyDisclosures = () => {
                             <p style={noteStyle}># Inclusive of complaints pending as on the last day of the month.</p>
 
                             {/* Table 3 — Annual Trend */}
-                            <p style={sectionTitleStyle}>The trend of annual disposal of complaints</p>
-                            <div style={{ overflowX: 'auto' }}>
+                            <h3 id="md-annual-trend-title" style={sectionTitleStyle}>The trend of annual disposal of complaints</h3>
+                            <div className="table-scroll" tabIndex={0} role="region" aria-labelledby="md-annual-trend-title">
                                 <table style={tableStyle}>
                                     <thead>
                                         <tr>
@@ -247,7 +253,7 @@ const MonthlyDisclosures = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 

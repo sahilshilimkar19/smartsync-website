@@ -1,4 +1,5 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 
 const testimonials = [
@@ -20,8 +21,9 @@ const testimonials = [
 ];
 
 const ClientTestimonials = () => {
+    usePageTitle('Client Testimonials | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container">
                     <motion.div
@@ -51,7 +53,7 @@ const ClientTestimonials = () => {
                                     {testimonial.quote}
                                 </p>
                                 <div style={{ borderTop: '1px solid rgba(26, 26, 26, 0.1)', paddingTop: '1.5rem', marginTop: 'auto' }}>
-                                    <h4 style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: '0.25rem' }}>{testimonial.author}</h4>
+                                    <h2 style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: '0.25rem' }}>{testimonial.author}</h2>
                                     <p style={{ fontSize: '0.9rem', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{testimonial.descriptor}</p>
                                 </div>
                             </motion.div>
@@ -59,7 +61,7 @@ const ClientTestimonials = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 

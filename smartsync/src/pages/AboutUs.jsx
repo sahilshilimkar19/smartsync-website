@@ -1,10 +1,12 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 import '../components/Hero.css'; // Reusing some base styles
 
 const AboutUs = () => {
+    usePageTitle('About Us | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container">
                     <motion.div
@@ -57,7 +59,7 @@ const AboutUs = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 

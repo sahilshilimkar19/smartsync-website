@@ -1,9 +1,11 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 
 const ComplaintRedressal = () => {
+    usePageTitle('Complaint Redressal & SCORES | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container" style={{ maxWidth: '800px' }}>
                     <motion.div
@@ -32,7 +34,7 @@ const ComplaintRedressal = () => {
 
                             <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', fontWeight: 600 }}>Step 1: Contact Our Client Servicing Team</h2>
                             <p style={{ marginBottom: '1.5rem', fontSize: '1.05rem', lineHeight: 1.7 }}>
-                                Clients can seek clarification to their query and are further entitled to make a complaint in writing, orally, or telephonically. An email may be sent to the Client Servicing Team at <a href="mailto:cahimanshu.shah@smartsyncservices.com" style={{ color: 'var(--color-accent-primary)', fontWeight: 500 }}>cahimanshu.shah@smartsyncservices.com</a>. Alternatively, the Investor may call on <a href="tel:+917016659985" style={{ color: 'var(--color-accent-primary)', fontWeight: 500 }}>+91 70166 59985</a>.
+                                Clients can seek clarification to their query and are further entitled to make a complaint in writing, orally, or telephonically. An email may be sent to the Client Servicing Team at <a href="mailto:cahimanshu.shah@smartsyncservices.com" className="text-link" style={{ color: 'var(--color-accent-primary)', fontWeight: 500 }}>cahimanshu.shah@smartsyncservices.com</a>. Alternatively, the Investor may call on <a href="tel:+917016659985" className="text-link" style={{ color: 'var(--color-accent-primary)', fontWeight: 500 }}>+91 70166 59985</a>.
                             </p>
                             <p style={{ marginBottom: '1.5rem', fontSize: '1.05rem', lineHeight: 1.7 }}>
                                 A letter may also be written with their query/complaint and posted at the below-mentioned address:
@@ -63,7 +65,7 @@ const ComplaintRedressal = () => {
                                 <a href="http://scores.gov.in" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem' }}>
                                     Visit SCORES Portal
                                 </a>
-                                <a href="https://play.google.com/store/apps/details?id=com.sebi.invapp" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', border: '1px solid var(--color-border)', textDecoration: 'none', color: 'var(--color-text-primary)' }}>
+                                <a href="https://play.google.com/store/apps/details?id=com.sebi.invapp" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', textDecoration: 'none', color: 'var(--color-text-primary)' }}>
                                     Download SCORES App
                                 </a>
                             </div>
@@ -71,7 +73,7 @@ const ComplaintRedressal = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 

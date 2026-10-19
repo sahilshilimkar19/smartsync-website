@@ -1,9 +1,11 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 
 const InvestorCharter = () => {
+    usePageTitle('Investor Charter | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container" style={{ maxWidth: '900px' }}>
                     <motion.div
@@ -116,7 +118,7 @@ const InvestorCharter = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 

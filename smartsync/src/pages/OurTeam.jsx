@@ -1,4 +1,5 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 
 const teamMembers = [
@@ -64,8 +65,9 @@ const teamMembers = [
 ];
 
 const OurTeam = () => {
+    usePageTitle('Our Team | SmartSync Services');
     return (
-        <main className="page-wrapper pt-32">
+        <div className="page-wrapper pt-32">
             <section className="section">
                 <div className="container">
                     <motion.div
@@ -94,12 +96,12 @@ const OurTeam = () => {
                                     <div style={{ width: '120px', height: '120px', borderRadius: '50%', overflow: 'hidden', marginBottom: '1.5rem' }}>
                                         <img
                                             src={member.image}
-                                            alt={member.name}
+                                            alt=""
                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                         />
                                     </div>
                                 )}
-                                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.25rem', fontWeight: 600 }}>{member.name}</h3>
+                                <h2 style={{ fontSize: '1.5rem', marginBottom: '0.25rem', fontWeight: 600 }}>{member.name}</h2>
                                 <p style={{ color: 'var(--color-accent-primary)', fontWeight: 500, marginBottom: '1.5rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{member.role}</p>
                                 <p style={{ fontSize: '0.95rem', lineHeight: 1.6, flexGrow: 1, color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
                                     {member.bio}
@@ -118,7 +120,7 @@ const OurTeam = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 

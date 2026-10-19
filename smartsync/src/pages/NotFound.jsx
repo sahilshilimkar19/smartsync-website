@@ -1,11 +1,13 @@
 import React from 'react';
+import usePageTitle from '../hooks/usePageTitle';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Home, ArrowRight } from 'lucide-react';
 
 const NotFound = () => {
+    usePageTitle('Page Not Found | SmartSync Services');
     return (
-        <main className="page-wrapper" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="page-wrapper" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <section className="section" style={{ width: '100%' }}>
                 <div className="container" style={{ textAlign: 'center' }}>
 
@@ -14,17 +16,8 @@ const NotFound = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
                     >
-                        <h1 style={{
-                            fontSize: 'clamp(6rem, 15vw, 12rem)',
-                            fontWeight: 800,
-                            lineHeight: 1,
-                            color: 'var(--color-primary)',
-                            opacity: 0.1,
-                            fontFamily: 'var(--font-display)',
-                            margin: 0
-                        }}>
-                            404
-                        </h1>
+                        {/* Decorative watermark; the h1 below carries the meaning */}
+                        <div className="not-found-code" aria-hidden="true" />
                     </motion.div>
 
                     <motion.div
@@ -33,9 +26,9 @@ const NotFound = () => {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         style={{ marginTop: '-3rem', position: 'relative', zIndex: 2 }}
                     >
-                        <h2 className="hero-title" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '1rem' }}>
+                        <h1 className="hero-title" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '1rem' }}>
                             Page Not <span className="text-accent">Found</span>
-                        </h2>
+                        </h1>
 
                         <p className="hero-subtitle" style={{ maxWidth: '600px', margin: '0 auto 3rem auto' }}>
                             We couldn't find the page you're looking for. It might have been moved, deleted, or perhaps the URL was mistyped.
@@ -54,7 +47,7 @@ const NotFound = () => {
                     </motion.div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };
 
