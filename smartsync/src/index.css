@@ -10,7 +10,8 @@
   --color-text-primary: #1A1A1A;
   /* Deep Charcoal */
   --color-text-secondary: #4A4A4A;
-  --color-text-muted: #7A7A7A;
+  --color-text-muted: #767676;
+  /* 4.54:1 on white (WCAG AA); was #7A7A7A at 4.29:1 */
 
   --color-accent-primary: #1C352D;
   /* Deep Forest/Racing Green */
@@ -156,4 +157,74 @@ button {
     gap: 2.5rem;
     margin-top: 2.5rem;
   }
+}
+
+/* Accessibility utilities */
+
+/* Visually hidden but still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* First focusable element on every page; hidden until it receives keyboard focus */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-accent-primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: none;
+}
+
+.skip-link:focus {
+  transform: none;
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+/* Links inside running text need a non-colour cue */
+.text-link {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.text-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Horizontally scrollable table wrapper; focusable so keyboard users can scroll it */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.table-scroll:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* Decorative "404" watermark: generated content, so it carries no text for assistive technology */
+.not-found-code::before {
+  content: "404";
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  opacity: 0.1;
 }

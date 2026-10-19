@@ -25,3 +25,8 @@ body::-webkit-scrollbar-thumb:hover {
 main {
   flex-grow: 1;
 }
+
+/* <main> is only focused programmatically by the skip link; it is not an interactive control */
+main:focus {
+  outline: none;
+}
