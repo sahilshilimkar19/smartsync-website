@@ -43,7 +43,7 @@ const ComplaintRedressal = () => {
                                 <strong>SmartSync Services</strong><br />
                                 F-106, Shridhar Auram, <br />
                                 Beside Shivalay Parisar, Kudasan, <br />
-                                Gandhinagar, Gujarat-382004
+                                Gandhinagar, Gujarat-382421
                             </address>
                             <p style={{ fontSize: '1.05rem', lineHeight: 1.7 }}>
                                 Clients can write to the Investment Adviser directly if the Investor does not receive a response within 10 business days of writing to the Client Servicing Team. The client can expect a reply within 10 business days of approaching the Investment Advisor.
