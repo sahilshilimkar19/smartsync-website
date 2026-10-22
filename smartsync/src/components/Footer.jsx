@@ -53,11 +53,17 @@ const Footer = () => {
 
                 </div>
 
+                <div className="footer-disclaimer">
+                    <p>Investments in securities market are subject to market risks. Read all the related documents carefully before investing.</p>
+                    <p>Registration granted by SEBI, membership of BASL and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</p>
+                </div>
+
                 <div className="footer-bottom">
                     <p>&copy; {new Date().getFullYear()} SmartSync Services. SEBI Registered Investment Advisory firm (INA000007881).</p>
                     <div className="footer-legal">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                        <Link to="/privacy-policy">Privacy Policy</Link>
+                        <Link to="/terms-of-service">Terms of Service</Link>
+                        <Link to="/refund-policy">Refund Policy</Link>
                     </div>
                 </div>
             </div>
