@@ -19,7 +19,7 @@ const servicesData = [
         icon: <TrendingUp size={32} />,
         title: "Small-cap & Micro-cap Advisory",
         description: "Over 130 Clients since August 2023, Focussed on Fundamental Based Long-Term Investing.",
-        link: "Try for Free",
+        link: "Know More",
         isExternal: false,
         path: "/flexi-cap-advisory-services"
     },
