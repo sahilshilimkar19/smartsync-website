@@ -62,7 +62,7 @@ const ComplaintRedressal = () => {
                                 In case you are not satisfied with our response, you can lodge your grievance with SEBI at their SCORES portal or you may also write to any of the offices of SEBI.
                             </p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                                <a href="http://scores.gov.in" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem' }}>
+                                <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem' }}>
                                     Visit SCORES Portal
                                 </a>
                                 <a href="https://play.google.com/store/apps/details?id=com.sebi.invapp" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', textDecoration: 'none', color: 'var(--color-text-primary)' }}>
