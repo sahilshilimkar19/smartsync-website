@@ -45,6 +45,7 @@ const NavDropdown = ({ id, open, onToggle, onHover, onLeave, onBlur, onNavigate 
       <button
         type="button"
         className="nav-link nav-trigger"
+        aria-haspopup="true"
         aria-expanded={open}
         aria-controls={`nav-menu-${id}`}
         onClick={onToggle}
@@ -189,6 +190,7 @@ const Navbar = () => {
           type="button"
           className="mobile-menu-btn"
           aria-label="Menu"
+          aria-haspopup="true"
           aria-expanded={mobileMenuOpen}
           aria-controls={mobileMenuOpen ? 'mobile-menu' : undefined}
           onClick={() => setMobileOpenAt(mobileMenuOpen ? null : pathname)}
