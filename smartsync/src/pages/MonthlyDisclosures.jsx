@@ -228,17 +228,17 @@ const MonthlyDisclosures = () => {
                                             <td style={tdStyle}>2</td>
                                             <td style={tdLeftStyle}>2026-27</td>
                                             <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>1</td>
                                         </tr>
                                         <tr>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}></td>
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                         </tr>
                                     </tbody>
                                 </table>
