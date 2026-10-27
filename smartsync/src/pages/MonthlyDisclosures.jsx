@@ -116,7 +116,7 @@ const MonthlyDisclosures = () => {
                                         <tr>
                                             <td style={tdStyle}>2</td>
                                             <td style={tdLeftStyle}>SEBI (SCORES)</td>
-                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>0</td>
                                             <td style={tdStyle}>1</td>
@@ -136,7 +136,7 @@ const MonthlyDisclosures = () => {
                                         <tr>
                                             <td style={{ ...tdStyle, fontWeight: 700 }} colSpan={1}></td>
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
