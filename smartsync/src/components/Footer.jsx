@@ -55,9 +55,20 @@ const Footer = () => {
 
                 </div>
 
-                <div className="footer-disclaimer">
-                    <p>Investments in securities market are subject to market risks. Read all the related documents carefully before investing.</p>
-                    <p>Registration granted by SEBI, membership of BASL and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</p>
+                <div className="footer-regulatory">
+                    <p>Smart Sync Services | Partnership firm | SEBI Investment Adviser Registration Number: INA000007881</p>
+                    <p>BSE Enlistment Number: 1260 | Type of Registration: Non-Individual | Validity of Registration: June 20, 2017 - Perpetual | GST: 24ACQFS0329C1ZC</p>
+                    <p>Registered Address: F-106, Shreedhar Auram, Beside Shivalay Parisar, Kudasan, Gandhinagar, Gujarat – 382421</p>
+                    <p>Email ID: <a href="mailto:smartsyncservices@gmail.com">smartsyncservices@gmail.com</a></p>
+                    <p>Corresponding SEBI Address: SEBI Bhavan, BKC Plot No: C4-A, “G” Block, Bandra Kurla Complex, Bandra – East, Mumbai – 400051</p>
+                    <p>Compliance Officer: Mr Krishna Satija | Email ID: <a href="mailto:krishna.satija@smartsyncservices.com">krishna.satija@smartsyncservices.com</a> | Contact Number: <a href="tel:+917509974402">7509974402</a></p>
+                    <p>Principal Officer: Mr Krishna Satija | Email ID: <a href="mailto:krishna.satija@smartsyncservices.com">krishna.satija@smartsyncservices.com</a> | Contact Number: <a href="tel:+917509974402">7509974402</a></p>
+                    <p className="footer-regulatory-heading">Disclaimers:</p>
+                    <ul>
+                        <li>Investments in securities market are subject to market risks. Read all the related documents carefully before investing.</li>
+                        <li>Registration granted by SEBI, enlistment as Investment Adviser (IA) with BSE Ltd. and certification from National Institute of Securities Markets (NISM) in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</li>
+                        <li>IA refers to SEBI Registered Investment Advisers.</li>
+                    </ul>
                 </div>
 
                 <div className="footer-bottom">
