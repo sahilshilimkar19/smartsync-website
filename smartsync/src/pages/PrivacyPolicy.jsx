@@ -24,14 +24,14 @@ const SECTIONS = [
 // Heading props for clause n, taken from SECTIONS so the contents list and headings always match
 const clause = (n) => ({ ...SECTIONS[n - 1], number: n });
 
-const OFFICE = 'F-106, Shridhar Auram, Beside Shivalay Parisar, Kudasan, Gandhinagar, Gujarat-382421';
+const OFFICE = 'F-106, Shreedhar Auram, Beside Shivalay Parisar, Kudasan, Gandhinagar, Gujarat – 382421';
 
 const PrivacyPolicy = () => (
     <LegalPage
         pageTitle="Privacy Policy | SmartSync Services"
         title="Privacy"
         accent="Policy"
-        lastUpdated="22 October 2026"
+        lastUpdated="29 October 2026"
         sections={SECTIONS}
     >
         <LegalSection {...clause(1)}>

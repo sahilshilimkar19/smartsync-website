@@ -44,7 +44,7 @@ const TermsOfService = () => (
         <LegalSection {...clause(2)}>
             <p>Smart Sync Investment Advisory Services, a partnership firm, is registered with the Securities and Exchange Board of India (SEBI) as an Investment Adviser under the SEBI (Investment Advisers) Regulations, 2013, Registration No. INA000007881, and is a member of BSE Administration &amp; Supervision Limited (BASL), Membership No. 1260.</p>
             <address className="legal-contact">
-                <span>Office: F-106, Shridhar Auram, Beside Shivalay Parisar, Kudasan, Gandhinagar, Gujarat-382421</span>
+                <span>Office: F-106, Shreedhar Auram, Beside Shivalay Parisar, Kudasan, Gandhinagar, Gujarat – 382421</span>
                 <span>Principal Officer: Krishna Satija, <MailLink email={OFFICER_EMAIL} />, <TelLink number={OFFICER_PHONE} /></span>
                 <span>Compliance Officer: Krishna Satija, <MailLink email={OFFICER_EMAIL} />, <TelLink number={OFFICER_PHONE} /></span>
             </address>
