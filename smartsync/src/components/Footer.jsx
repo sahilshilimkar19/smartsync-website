@@ -48,6 +48,8 @@ const Footer = () => {
                         <Link to="/investor-charter" className="footer-link">Investor Charter</Link>
                         <Link to="/monthly-disclosures" className="footer-link">Monthly Disclosures</Link>
                         <Link to="/complaint-redressal" className="footer-link">Complaint Redressal / Grievance Redressal Mechanism</Link>
+                        <a href="https://scores.sebi.gov.in/" className="footer-link" target="_blank" rel="noopener noreferrer">SEBI SCORES<span className="sr-only"> (opens in a new tab)</span></a>
+                        <a href="https://smartodr.in/login" className="footer-link" target="_blank" rel="noopener noreferrer">SEBI Smart ODR<span className="sr-only"> (opens in a new tab)</span></a>
                         <a href="mailto:akhilesh.p@smartsyncservices.com" className="footer-link highlight">akhilesh.p@smartsyncservices.com</a>
                     </div>
 
