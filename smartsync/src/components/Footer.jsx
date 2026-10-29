@@ -15,7 +15,7 @@ const Footer = () => {
                                 src="/favicon.png"
                                 alt=""
                                 className="footer-logo-img"
-                                style={{ height: '120px', width: 'auto', marginBottom: '1rem', display: 'block', imageRendering: 'crisp-edges' }}
+                                style={{ height: '88px', width: 'auto', marginBottom: '0.75rem', display: 'block', imageRendering: 'crisp-edges' }}
                             />
                         </Link>
                         <p className="footer-slogan">Always in Sync with Your Investment Needs.</p>
@@ -43,7 +43,7 @@ const Footer = () => {
                         <Link to="/contact-us" className="footer-link">Contact Us</Link>
                     </div>
 
-                    <div className="footer-links-group">
+                    <div className="footer-links-group footer-sebi">
                         <h2 className="footer-title">SEBI Compliance</h2>
                         <Link to="/investor-charter" className="footer-link">Investor Charter</Link>
                         <Link to="/monthly-disclosures" className="footer-link">Monthly Disclosures</Link>
