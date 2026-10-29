@@ -1,5 +1,27 @@
 /* Contact form */
 
+/* Both columns may shrink to the screen. Grid items otherwise stop at their widest unbreakable content (the email
+   address, and the Inquiry type dropdown sized to its longest option), so narrow phones scrolled sideways (WCAG 1.4.10) */
+.contact-info,
+.contact-form {
+    min-width: 0;
+}
+
+.contact-info {
+    padding: 3rem;
+}
+
+/* The long email address wraps instead of pushing the card wider than the screen */
+.contact-info a {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    .contact-info {
+        padding: 1.5rem;
+    }
+}
+
 .contact-required-note {
     font-size: 0.9rem;
     color: var(--color-text-secondary);

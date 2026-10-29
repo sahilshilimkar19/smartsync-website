@@ -68,11 +68,12 @@ const ContactUs = () => {
 
                     <div className="about-grid responsive-grid-2-col">
                         <motion.div
+                            className="contact-info"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            style={{ background: 'var(--color-bg-surface)', padding: '3rem', border: '1px solid rgba(26, 26, 26, 0.1)' }}
+                            style={{ background: 'var(--color-bg-surface)', border: '1px solid rgba(26, 26, 26, 0.1)' }}
                         >
                             <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', fontWeight: 600 }}>Get In Touch</h2>
 
@@ -108,6 +109,7 @@ const ContactUs = () => {
                         </motion.div>
 
                         <motion.form
+                            className="contact-form"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
