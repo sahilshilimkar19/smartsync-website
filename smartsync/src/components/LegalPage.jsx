@@ -4,8 +4,8 @@ import { motion as Motion } from 'framer-motion';
 import usePageTitle from '../hooks/usePageTitle';
 import './LegalPage.css';
 
-// Shared layout for the Privacy Policy, Terms of Service and Refund Policy pages
-const LegalPage = ({ pageTitle, title, accent, lastUpdated, sections, children }) => {
+// Shared layout for the legal and grievance pages. `meta` replaces the default firm and "Last updated" lines.
+const LegalPage = ({ pageTitle, title, accent, lastUpdated, meta, sections, children }) => {
     usePageTitle(pageTitle);
     return (
         <div className="page-wrapper pt-32">
@@ -18,10 +18,14 @@ const LegalPage = ({ pageTitle, title, accent, lastUpdated, sections, children }
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="hero-title legal-title">{title} <span className="text-accent">{accent}</span></h1>
-                        <p className="legal-meta">
-                            <strong>Smart Sync Investment Advisory Services</strong> (“SmartSync Services”, “we”, “us”, “our”), a partnership firm, SEBI Registered Investment Adviser, Registration No. INA000007881.
-                        </p>
-                        <p className="legal-meta">Last updated: {lastUpdated}</p>
+                        {meta ?? (
+                            <>
+                                <p className="legal-meta">
+                                    <strong>Smart Sync Investment Advisory Services</strong> (“SmartSync Services”, “we”, “us”, “our”), a partnership firm, SEBI Registered Investment Adviser, Registration No. INA000007881.
+                                </p>
+                                <p className="legal-meta">Last updated: {lastUpdated}</p>
+                            </>
+                        )}
                     </Motion.header>
 
                     {sections && (

@@ -114,6 +114,11 @@
     padding-left: 1.4rem;
 }
 
+/* A contact card listed under a bullet (e.g. a postal address) */
+.legal-body li > .legal-contact {
+    margin-top: 0.5rem;
+}
+
 .legal-link {
     color: var(--color-accent-primary);
     font-weight: 500;

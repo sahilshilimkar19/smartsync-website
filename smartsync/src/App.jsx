@@ -48,6 +48,7 @@ function App() {
           <Route path="/investor-charter" element={<InvestorCharter />} />
           <Route path="/monthly-disclosures" element={<MonthlyDisclosures />} />
           <Route path="/complaint-redressal" element={<ComplaintRedressal />} />
+          <Route path="/grievance-redressal" element={<Navigate to="/complaint-redressal" replace />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
