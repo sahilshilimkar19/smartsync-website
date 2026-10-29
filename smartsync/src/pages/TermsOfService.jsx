@@ -32,7 +32,7 @@ const TermsOfService = () => (
         pageTitle="Terms of Service | SmartSync Services"
         title="Terms of"
         accent="Service"
-        lastUpdated="22 October 2026"
+        lastUpdated="29 October 2026"
         sections={SECTIONS}
     >
         <LegalSection {...clause(1)}>
@@ -42,7 +42,7 @@ const TermsOfService = () => (
         </LegalSection>
 
         <LegalSection {...clause(2)}>
-            <p>Smart Sync Investment Advisory Services, a partnership firm, is registered with the Securities and Exchange Board of India (SEBI) as an Investment Adviser under the SEBI (Investment Advisers) Regulations, 2013, Registration No. INA000007881, and is a member of BSE Administration &amp; Supervision Limited (BASL), Membership No. 1260.</p>
+            <p>Smart Sync Investment Advisory Services, a partnership firm, is registered with the Securities and Exchange Board of India (SEBI) as an Investment Adviser under the SEBI (Investment Advisers) Regulations, 2013, Registration No. INA000007881, and is enlisted as an Investment Adviser with BSE Ltd., Enlistment No. 1260.</p>
             <address className="legal-contact">
                 <span>Office: F-106, Shreedhar Auram, Beside Shivalay Parisar, Kudasan, Gandhinagar, Gujarat – 382421</span>
                 <span>Principal Officer: Krishna Satija, <MailLink email={OFFICER_EMAIL} />, <TelLink number={OFFICER_PHONE} /></span>
@@ -72,7 +72,7 @@ const TermsOfService = () => (
                 <li>Investments in securities market are subject to market risks. Read all the related documents carefully before investing.</li>
                 <li>We do not promise or guarantee any return, and we never offer assured, fixed or indicative returns. If anyone claiming to represent us promises guaranteed returns, report it to us.</li>
                 <li>Past performance, including examples of past recommendations, does not indicate future results.</li>
-                <li>Registration granted by SEBI, membership of BASL and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</li>
+                <li>Registration granted by SEBI, enlistment as Investment Adviser (IA) with BSE Ltd. and certification from National Institute of Securities Markets (NISM) in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</li>
             </ul>
         </LegalSection>
 
