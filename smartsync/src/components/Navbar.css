@@ -88,7 +88,10 @@
     position: absolute;
     top: 100%;
     left: 0;
+    /* Sized to its links (an absolutely positioned box would otherwise take its narrow button's width); long labels wrap */
+    width: max-content;
     min-width: 220px;
+    max-width: 300px;
     background: var(--color-bg-base);
     border: 1px solid rgba(26, 26, 26, 0.1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -99,6 +102,12 @@
     transition: all 0.3s ease;
     z-index: 1000;
     pointer-events: none;
+}
+
+/* The last dropdown opens leftwards from its button's right edge so it stays on screen */
+.nav-item.align-end .dropdown-menu {
+    left: auto;
+    right: 0;
 }
 
 /* Open state is driven by Navbar state (click, keyboard or mouse hover) so Escape can always dismiss it */

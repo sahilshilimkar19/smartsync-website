@@ -47,7 +47,7 @@ const Footer = () => {
                         <h2 className="footer-title">SEBI Compliance</h2>
                         <Link to="/investor-charter" className="footer-link">Investor Charter</Link>
                         <Link to="/monthly-disclosures" className="footer-link">Monthly Disclosures</Link>
-                        <Link to="/complaint-redressal" className="footer-link">Complaint Redressal & SCORES</Link>
+                        <Link to="/complaint-redressal" className="footer-link">Complaint Redressal / Grievance Redressal Mechanism</Link>
                         <a href="mailto:akhilesh.p@smartsyncservices.com" className="footer-link highlight">akhilesh.p@smartsyncservices.com</a>
                     </div>
 

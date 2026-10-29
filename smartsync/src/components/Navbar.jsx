@@ -22,10 +22,11 @@ const MENUS = {
   },
   sebi: {
     label: 'SEBI Compliance',
+    align: 'end', // last menu: opens leftwards from its button so it stays on screen
     links: [
       { to: '/investor-charter', label: 'Investor Charter' },
       { to: '/monthly-disclosures', label: 'Monthly Disclosures' },
-      { to: '/complaint-redressal', label: 'Complaint Redressal & SCORES' }
+      { to: '/complaint-redressal', label: 'Complaint Redressal / Grievance Redressal Mechanism' }
     ]
   }
 };
@@ -37,7 +38,7 @@ const NavDropdown = ({ id, open, onToggle, onHover, onLeave, onBlur, onNavigate 
   const menu = MENUS[id];
   return (
     <div
-      className={`nav-item has-dropdown${open ? ' is-open' : ''}`}
+      className={`nav-item has-dropdown${open ? ' is-open' : ''}${menu.align === 'end' ? ' align-end' : ''}`}
       onPointerEnter={onHover}
       onPointerLeave={onLeave}
       onBlur={onBlur}
@@ -243,7 +244,7 @@ const Navbar = () => {
                 <span className="mobile-nav-title">SEBI Compliance</span>
                 <Link to="/investor-charter" onClick={closeMobileMenu}>Investor Charter</Link>
                 <Link to="/monthly-disclosures" onClick={closeMobileMenu}>Monthly Disclosures</Link>
-                <Link to="/complaint-redressal" onClick={closeMobileMenu}>Complaint Redressal</Link>
+                <Link to="/complaint-redressal" onClick={closeMobileMenu}>Complaint Redressal / Grievance Redressal Mechanism</Link>
               </div>
 
               <Link to="/contact-us" onClick={closeMobileMenu}>Contact Us</Link>
