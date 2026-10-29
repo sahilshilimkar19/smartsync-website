@@ -116,10 +116,10 @@ const MonthlyDisclosures = () => {
                                         <tr>
                                             <td style={tdStyle}>2</td>
                                             <td style={tdLeftStyle}>SEBI (SCORES)</td>
+                                            <td style={tdStyle}>1</td>
+                                            <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>0</td>
                                             <td style={tdStyle}>NA</td>
                                         </tr>
@@ -136,10 +136,10 @@ const MonthlyDisclosures = () => {
                                         <tr>
                                             <td style={{ ...tdStyle, fontWeight: 700 }} colSpan={1}></td>
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>NA</td>
                                         </tr>
@@ -164,39 +164,36 @@ const MonthlyDisclosures = () => {
                                     </thead>
                                     <tbody>
                                         {[
-                                            ['1', 'June 2025'],
-                                            ['2', 'July 2025'],
-                                            ['3', 'August 2025'],
-                                            ['4', 'September 2025'],
-                                            ['5', 'October 2025'],
-                                            ['6', 'November 2025'],
-                                            ['7', 'December 2025'],
-                                            ['8', 'January 2026'],
-                                            ['9', 'February 2026'],
-                                            ['10', 'March 2026'],
-                                            ['11', 'April 2026'],
-                                            ['12', 'May 2026'],
-                                            ['13', 'June 2026'],
-                                            ['14', 'July 2026'],
-                                            ['15', 'August 2026'],
-                                            ['16', 'September 2026'],
-                                        ].map(([sr, month]) => (
+                                            // Last 12 months only: [Sr No., Month, Carried forward, Received, Resolved, Pending]
+                                            ['1', 'October 2025', 0, 0, 0, 0],
+                                            ['2', 'November 2025', 0, 0, 0, 0],
+                                            ['3', 'December 2025', 0, 0, 0, 0],
+                                            ['4', 'January 2026', 0, 0, 0, 0],
+                                            ['5', 'February 2026', 0, 0, 0, 0],
+                                            ['6', 'March 2026', 0, 0, 0, 0],
+                                            ['7', 'April 2026', 0, 0, 0, 0],
+                                            ['8', 'May 2026', 0, 0, 0, 0],
+                                            ['9', 'June 2026', 0, 0, 0, 0],
+                                            ['10', 'July 2026', 0, 0, 0, 0],
+                                            ['11', 'August 2026', 0, 0, 0, 0],
+                                            ['12', 'September 2026', 0, 1, 0, 1],
+                                        ].map(([sr, month, carried, received, resolved, pending]) => (
                                             <tr key={sr}>
                                                 <td style={tdStyle}>{sr}</td>
                                                 <td style={tdLeftStyle}>{month}</td>
-                                                <td style={tdStyle}>0</td>
-                                                <td style={tdStyle}>0</td>
-                                                <td style={tdStyle}>0</td>
-                                                <td style={tdStyle}>0</td>
+                                                <td style={tdStyle}>{carried}</td>
+                                                <td style={tdStyle}>{received}</td>
+                                                <td style={tdStyle}>{resolved}</td>
+                                                <td style={tdStyle}>{pending}</td>
                                             </tr>
                                         ))}
                                         <tr>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}></td>
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -231,17 +228,17 @@ const MonthlyDisclosures = () => {
                                             <td style={tdStyle}>2</td>
                                             <td style={tdLeftStyle}>2026-27</td>
                                             <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>1</td>
                                         </tr>
                                         <tr>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}></td>
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                         </tr>
                                     </tbody>
                                 </table>
