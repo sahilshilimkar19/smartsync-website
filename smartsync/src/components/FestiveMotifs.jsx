@@ -259,48 +259,6 @@ const Firework = ({ x, y, r, rays = 12, className, delay, colors = GOLD_BURST })
     );
 };
 
-/* VictoryBow — a gold recurve bow drawing and loosing an arrow that bursts into fireworks */
-
-// The bow lies in a frame tilted 28° upward; the string's two halves pivot at the tips (±96) and meet 36 units behind
-// the rest line when drawn, which is rotate(±20.56deg) scaleY(1.068) — see .fc-string-* in FestiveCarousel.css.
-const BOW_LIMB = 'M0 -96C26 -84 44 -46 42 0C44 46 26 84 0 96';
-const BOW_EARS = 'M0 -96C-6 -100 -6 -108 2 -112M0 96C-6 100 -6 108 2 112';
-
-export const VictoryBow = ({ className }) => (
-    <svg className={className} viewBox="0 0 400 320" aria-hidden="true" focusable="false">
-        <Firework x={300} y={226} r={12} rays={8} className="fc-anim fc-sparkle" delay={-1.2} />
-        <Firework x={188} y={44} r={10} rays={8} className="fc-anim fc-sparkle fc-sparkle-slow" delay={-3.1} />
-        <Firework x={238} y={58} r={30} className="fc-anim fc-burst" delay={2.6} />
-        <Firework x={362} y={170} r={26} rays={10} className="fc-anim fc-burst" delay={3} />
-
-        <g transform="translate(96 212) rotate(-28)">
-            <Firework x={262} y={0} r={56} rays={16} className="fc-anim fc-burst fc-burst-main" delay={2.25} />
-            <path className="fc-anim fc-trail" d="M114 0H254" pathLength="1" stroke={GOLD_LIGHT} strokeWidth="2" strokeLinecap="round" strokeDasharray="1 1" />
-
-            <g transform="translate(0 -96)">
-                <rect className="fc-anim fc-string fc-string-top" x="-0.75" y="0" width="1.5" height="96" fill={PAPER} />
-            </g>
-            <g transform="translate(0 96)">
-                <rect className="fc-anim fc-string fc-string-bottom" x="-0.75" y="-96" width="1.5" height="96" fill={PAPER} />
-            </g>
-
-            <path d={BOW_LIMB} fill="none" stroke={MARIGOLD_CORE} strokeWidth="8" strokeLinecap="round" />
-            <path d={BOW_LIMB} fill="none" stroke={GOLD} strokeWidth="4.5" strokeLinecap="round" />
-            <path d={BOW_EARS} fill="none" stroke={GOLD} strokeWidth="4" strokeLinecap="round" />
-            <circle cx="2" cy="-112" r="3" fill={GOLD_LIGHT} />
-            <circle cx="2" cy="112" r="3" fill={GOLD_LIGHT} />
-            <rect x="36" y="-13" width="12" height="26" rx="3" fill={KUMKUM} />
-            <path d="M36 -7H48M36 0H48M36 7H48" stroke={GOLD} strokeWidth="1.5" />
-
-            <g className="fc-anim fc-arrow">
-                <path d="M4 0L-4 -8H12L20 0ZM4 0L-4 8H12L20 0Z" fill={KUMKUM} />
-                <rect x="0" y="-1.2" width="136" height="2.4" rx="1.2" fill={GOLD_LIGHT} />
-                <path d="M134 -6L150 0L134 6L138 0Z" fill={GOLD} />
-            </g>
-        </g>
-    </svg>
-);
-
 /* Rangoli — a flower mandala that blooms petal by petal, drawn around (0, 0) with a radius of about 105 */
 
 const RANGOLI_RINGS = [
@@ -873,36 +831,6 @@ export const AartiThali = ({ className }) => (
                 <g className="fc-anim fc-fall" style={{ '--d': `${petal.d}s`, '--dur': `${petal.dur}s`, '--py': `${petal.py}px` }}>
                     <g className="fc-anim fc-flutter" style={{ '--d': `${petal.d}s` }}>
                         <path d={PETAL} fill={petal.fill} transform={`scale(${petal.s})`} />
-                    </g>
-                </g>
-            </g>
-        ))}
-    </svg>
-);
-
-/* GoldLeaves — twin-lobed apta leaves, exchanged as "gold" on Dussehra, drifting down */
-
-const APTA = 'M0 12C-5 8 -14 5 -14 -4C-14 -11 -7 -14 -2 -10C-1 -9 0 -8 0 -6C0 -8 1 -9 2 -10C7 -14 14 -11 14 -4C14 5 5 8 0 12Z';
-
-const LEAVES = [
-    { x: 64, y: -24, s: 1, dur: 11, d: 0 },
-    { x: 140, y: -40, s: 0.75, dur: 13, d: -5.5 },
-    { x: 262, y: -30, s: 0.9, dur: 12, d: -2.4 },
-    { x: 336, y: -46, s: 0.7, dur: 14, d: -8.2 },
-    { x: 104, y: -36, s: 0.6, dur: 15, d: -10.6 },
-    { x: 300, y: -22, s: 0.8, dur: 10, d: -6.8 }
-];
-
-export const GoldLeaves = ({ className }) => (
-    <svg className={className} viewBox="0 0 400 300" aria-hidden="true" focusable="false">
-        {LEAVES.map((leaf) => (
-            <g key={leaf.x} transform={`translate(${leaf.x} ${leaf.y})`}>
-                <g className="fc-anim fc-leaf-fall" style={{ '--d': `${leaf.d}s`, '--dur': `${leaf.dur}s` }}>
-                    <g className="fc-anim fc-leaf-sway" style={{ '--d': `${leaf.d}s` }}>
-                        <g transform={`scale(${leaf.s})`}>
-                            <path d={APTA} fill={GOLD} />
-                            <path d="M0 12V-6M0 12V17" stroke={MARIGOLD_CORE} strokeWidth="1.2" strokeLinecap="round" />
-                        </g>
                     </g>
                 </g>
             </g>
