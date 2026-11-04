@@ -1,4 +1,4 @@
-/* Festive carousel — Dussehra 2026 */
+/* Festive carousel — Diwali 2026: one look for each festival day */
 
 /* Undo the global h2 / p / button colours and widths from index.css on the dark panel */
 .festive-carousel :where(h2, p, button) {
@@ -25,7 +25,7 @@
     --fc-glow: rgba(242, 163, 58, 0.2);
     --fc-horizon: transparent;
     --fc-glow-x: calc(50% + 300px); /* centre of the art column */
-    --fc-cycle: 7s; /* one slide's autoplay time, and the length of the bow's loop */
+    --fc-cycle: 7s; /* one slide's autoplay time, and the length of the coin and firework loops */
     position: relative;
     isolation: isolate;
     display: flex;
@@ -36,7 +36,8 @@
     background-image:
         radial-gradient(500px circle at var(--fc-glow-x) 42%, var(--fc-glow), transparent),
         radial-gradient(1200px 280px at 50% 118%, var(--fc-horizon), transparent),
-        radial-gradient(520px circle at 6% 100%, rgba(158, 124, 80, 0.18), transparent);
+        radial-gradient(520px circle at 6% 100%, rgba(158, 124, 80, 0.18), transparent),
+        var(--fc-sky, none);
     transition: background-color 0.6s ease;
 }
 
@@ -69,21 +70,45 @@
     background: linear-gradient(#B3261E 0 1.5px, transparent 1.5px 4px, #9E7C50 4px 6px);
 }
 
-/* Dusk: indigo sky with a saffron horizon */
-.fc-panel[data-theme="dusk"] {
-    --fc-bg: #201A3D;
-    --fc-glow: rgba(242, 163, 58, 0.22);
-    --fc-horizon: rgba(224, 123, 36, 0.3);
+/* Dhanteras: royal maroon and gold */
+.fc-panel[data-theme="royal"] {
+    --fc-bg: #3F0F1B;
+    --fc-accent: #F6C66B;
+    --fc-glow: rgba(246, 198, 107, 0.22);
+    --fc-horizon: rgba(158, 124, 80, 0.24);
 }
 
-.fc-panel[data-theme="maroon"] {
-    --fc-bg: #4A1D1F;
+/* Choti Diwali: indigo night */
+.fc-panel[data-theme="indigo"] {
+    --fc-bg: #1D1B4B;
+    --fc-accent: #F2A33A;
     --fc-glow: rgba(242, 163, 58, 0.2);
+    --fc-horizon: rgba(224, 123, 36, 0.22);
 }
 
-.fc-panel[data-theme="forest"] {
-    --fc-bg: #1C352D;
-    --fc-glow: rgba(246, 198, 107, 0.2);
+/* Diwali: deep night and gold */
+.fc-panel[data-theme="night"] {
+    --fc-bg: #120E2B;
+    --fc-accent: #F6C66B;
+    --fc-glow: rgba(246, 198, 107, 0.18);
+    --fc-horizon: rgba(242, 163, 58, 0.2);
+}
+
+/* New Year: a pre-dawn sky warming to saffron */
+.fc-panel[data-theme="sunrise"] {
+    --fc-bg: #4A1E12;
+    --fc-accent: #FFC56E;
+    --fc-glow: rgba(255, 179, 71, 0.24);
+    --fc-horizon: rgba(242, 123, 36, 0.3);
+    --fc-sky: linear-gradient(180deg, #33142B 0%, rgba(74, 30, 18, 0) 70%);
+}
+
+/* Bhai Dooj: rose */
+.fc-panel[data-theme="rose"] {
+    --fc-bg: #4E1534;
+    --fc-accent: #F7A9C4;
+    --fc-glow: rgba(247, 169, 196, 0.2);
+    --fc-horizon: rgba(242, 163, 58, 0.18);
 }
 
 .fc-toran {
@@ -323,10 +348,10 @@
     grid-area: 1 / 1;
 }
 
-.fc-art-bow {
-    width: min(100%, clamp(250px, 27vw, 370px));
+.fc-art-main {
+    width: min(100%, clamp(250px, 27vw, 380px));
     height: auto;
-    aspect-ratio: 400 / 320;
+    aspect-ratio: 5 / 4;
 }
 
 .fc-art-sparks {
@@ -334,13 +359,6 @@
     inset: 0;
     width: 100%;
     height: 100%;
-}
-
-.fc-art-sun,
-.fc-art-leaves {
-    width: min(100%, clamp(250px, 27vw, 380px));
-    height: auto;
-    aspect-ratio: 4 / 3;
 }
 
 /*
@@ -389,48 +407,381 @@
     }
 }
 
-/* Victory — one cycle per slide visit: nock (0–0.4s), draw (0.6–1.5s), loose (1.7s), arrow lands (2.25s),
-   fireworks (2.25s, 2.6s, 3s), then rest until the cycle restarts */
+/* Stars, rangoli dots and halos */
 
-.fc-string {
+.fc-twinkle {
     transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: fc-twinkle 2.6s ease-in-out var(--d, 0s) infinite alternate;
 }
 
-.fc-string-top {
-    transform-origin: 50% 0;
+.fc-glimmer {
+    animation: fc-glimmer 2.4s ease-in-out var(--d, 0s) infinite alternate;
 }
 
-.fc-string-bottom {
+.fc-glow {
+    animation: fc-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes fc-twinkle {
+    from {
+        opacity: 0.3;
+        transform: scale(0.6) rotate(0deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(45deg);
+    }
+}
+
+@keyframes fc-glimmer {
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fc-glow {
+    from {
+        opacity: 0.7;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Diyas — each flame flickers; a diya given a lighting time glows on and its flame grows from the wick */
+
+.fc-flame {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: fc-flicker 1.4s ease-in-out var(--d, 0s) infinite;
+}
+
+.fc-light {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+}
+
+.fc-ignite {
+    transform-box: fill-box;
     transform-origin: 50% 100%;
 }
 
-.fc-arrow,
-.fc-trail,
+.fc-slide.is-active .fc-light {
+    animation: fc-light 0.9s ease-out var(--d, 0s) both;
+}
+
+.fc-slide.is-active .fc-ignite {
+    animation: fc-ignite 0.6s cubic-bezier(0.2, 0.8, 0.3, 1.2) var(--d, 0s) both;
+}
+
+@keyframes fc-flicker {
+    0%,
+    100% {
+        transform: none;
+    }
+
+    20% {
+        transform: scale(0.94, 1.07) rotate(-2deg);
+    }
+
+    45% {
+        transform: scale(1.04, 0.95) rotate(1.5deg);
+    }
+
+    70% {
+        transform: scale(0.97, 1.05) rotate(-1deg);
+    }
+}
+
+@keyframes fc-light {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.25);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fc-ignite {
+    0% {
+        opacity: 0;
+        transform: scale(0.1, 0.05);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1, 1.25);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Dhanteras — coins arc in from the corners (a linear X move over an eased Y move), spinning, and glint as they land */
+
+.fc-coin-x,
+.fc-glint,
+.fc-rocket,
 .fc-burst,
 .fc-sparkle {
     opacity: 0;
 }
 
+.fc-coin-spin,
+.fc-glint,
 .fc-burst,
 .fc-sparkle {
     transform-box: fill-box;
     transform-origin: 50% 50%;
 }
 
-.fc-slide.is-active .fc-arrow {
-    animation: fc-arrow var(--fc-cycle) infinite;
+.fc-slide.is-active .fc-coin-x {
+    animation: fc-coin-x var(--fc-cycle) linear var(--d, 0s) infinite both;
 }
 
-.fc-slide.is-active .fc-string-top {
-    animation: fc-string-top var(--fc-cycle) infinite;
+.fc-slide.is-active .fc-coin-y {
+    animation: fc-coin-y var(--fc-cycle) var(--d, 0s) infinite both;
 }
 
-.fc-slide.is-active .fc-string-bottom {
-    animation: fc-string-bottom var(--fc-cycle) infinite;
+.fc-coin-spin {
+    animation: fc-coin-spin 0.4s ease-in-out infinite alternate;
 }
 
-.fc-slide.is-active .fc-trail {
-    animation: fc-trail var(--fc-cycle) infinite;
+.fc-slide.is-active .fc-glint {
+    animation: fc-glint var(--fc-cycle) ease-out var(--d, 0s) infinite both;
+}
+
+/* 1.1s flight: 15.7% of the 7s cycle */
+@keyframes fc-coin-x {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    15.7% {
+        opacity: 1;
+        transform: translateX(var(--dx));
+    }
+
+    17%,
+    100% {
+        opacity: 0;
+        transform: translateX(var(--dx));
+    }
+}
+
+@keyframes fc-coin-y {
+    0% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
+    }
+
+    6.4% {
+        transform: translateY(-62px);
+        animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33);
+    }
+
+    15.7%,
+    100% {
+        transform: translateY(36px);
+    }
+}
+
+@keyframes fc-coin-spin {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0.25);
+    }
+}
+
+@keyframes fc-glint {
+    0%,
+    15.4% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+
+    17.5% {
+        opacity: 1;
+        transform: scale(1.15) rotate(30deg);
+    }
+
+    24%,
+    100% {
+        opacity: 0;
+        transform: scale(0.2) rotate(60deg);
+    }
+}
+
+/* Coin stacks — one coin at a time drops onto its stack */
+
+.fc-slide.is-active .fc-drop {
+    animation: fc-drop 0.5s cubic-bezier(0.5, 0, 0.75, 0) var(--d, 0s) both;
+}
+
+@keyframes fc-drop {
+    0% {
+        opacity: 0;
+        transform: translateY(-46px);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    75% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+    }
+
+    88% {
+        transform: translateY(-3px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Book — the right page lifts and turns onto the left one, then the next identical page takes its place */
+
+.fc-page {
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
+    animation: fc-page-turn 6s ease-in-out infinite;
+}
+
+@keyframes fc-page-turn {
+    0%,
+    50% {
+        transform: none;
+    }
+
+    62% {
+        transform: scaleX(0.4) skewY(-7deg);
+    }
+
+    72% {
+        transform: scaleX(-0.35) skewY(5deg);
+    }
+
+    84%,
+    100% {
+        transform: scaleX(-1);
+    }
+}
+
+/* Rangoli — the outlines draw themselves, the petals bloom ring by ring, the dots pop in, the centre glows */
+
+.fc-petal {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+}
+
+.fc-pop,
+.fc-pulse,
+.fc-spin-slow {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+}
+
+.fc-slide.is-active .fc-petal {
+    animation: fc-petal 0.6s cubic-bezier(0.2, 0.8, 0.3, 1.15) var(--d, 0s) both;
+}
+
+.fc-slide.is-active .fc-draw {
+    animation: fc-draw 1s ease-out var(--d, 0s) both;
+}
+
+.fc-slide.is-active .fc-pop {
+    animation: fc-pop 0.45s cubic-bezier(0.2, 0.8, 0.3, 1.3) var(--d, 0s) both;
+}
+
+.fc-pulse {
+    animation: fc-pulse 2.8s ease-in-out infinite alternate;
+}
+
+.fc-spin-slow {
+    animation: fc-spin 120s linear infinite;
+}
+
+@keyframes fc-petal {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes fc-draw {
+    from {
+        stroke-dashoffset: 1;
+    }
+}
+
+@keyframes fc-pop {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes fc-pulse {
+    from {
+        transform: scale(0.85);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+}
+
+@keyframes fc-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Lanterns and fireworks — each rocket climbs for 0.5s, then its firework bursts */
+
+.fc-lantern {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+    animation: fc-sway 3.4s ease-in-out var(--d, 0s) infinite alternate;
+}
+
+.fc-tail {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+    animation: fc-tail 1.7s ease-in-out var(--d, 0s) infinite alternate;
+}
+
+.fc-slide.is-active .fc-rocket {
+    animation: fc-rocket var(--fc-cycle) var(--d, 0s) infinite both;
 }
 
 .fc-slide.is-active .fc-burst {
@@ -445,120 +796,36 @@
     animation-duration: 5.4s;
 }
 
-@keyframes fc-arrow {
+@keyframes fc-tail {
+    from {
+        transform: rotate(-7deg);
+    }
+
+    to {
+        transform: rotate(7deg);
+    }
+}
+
+@keyframes fc-rocket {
     0% {
         opacity: 0;
-        transform: translateX(0);
-    }
-
-    5.7% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    8.6% {
-        transform: translateX(0);
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    21.4% {
-        transform: translateX(-36px);
-    }
-
-    24.3% {
-        opacity: 1;
-        transform: translateX(-36px);
+        transform: translateY(var(--rise));
         animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
     }
 
-    30% {
+    1.5% {
         opacity: 1;
     }
 
-    32.1%,
+    7% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    7.6%,
     100% {
         opacity: 0;
-        transform: translateX(104px);
-    }
-}
-
-/* rotate(±20.56deg) scaleY(1.068): each 96-unit half reaches the nock point 36 units behind the rest line */
-@keyframes fc-string-top {
-    0%,
-    8.6% {
-        transform: none;
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    21.4%,
-    24.3% {
-        transform: rotate(20.56deg) scaleY(1.068);
-        animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
-    }
-
-    25.7% {
-        transform: rotate(-3deg) scaleY(1);
-    }
-
-    27.1% {
-        transform: rotate(1.4deg) scaleY(1);
-    }
-
-    28.6%,
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes fc-string-bottom {
-    0%,
-    8.6% {
-        transform: none;
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    21.4%,
-    24.3% {
-        transform: rotate(-20.56deg) scaleY(1.068);
-        animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
-    }
-
-    25.7% {
-        transform: rotate(3deg) scaleY(1);
-    }
-
-    27.1% {
-        transform: rotate(-1.4deg) scaleY(1);
-    }
-
-    28.6%,
-    100% {
-        transform: none;
-    }
-}
-
-/* Same easing and timing as the arrow's flight, so the trail's head stays on the arrow's tip */
-@keyframes fc-trail {
-    0%,
-    24.3% {
-        opacity: 0;
-        stroke-dashoffset: 1;
-        animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
-    }
-
-    25% {
-        opacity: 0.9;
-    }
-
-    32.1% {
-        opacity: 0.9;
-        stroke-dashoffset: 0;
-    }
-
-    42%,
-    100% {
-        opacity: 0;
-        stroke-dashoffset: 0;
+        transform: translateY(0);
     }
 }
 
@@ -601,204 +868,78 @@
     }
 }
 
-/* Vices — ten words appear, an arrow crosses each row and strikes each word out as it passes, DISCIPLINE rises */
+/* Chopda — the ledger rises, its right half opens, "Shubh" and "Labh" appear, entries are written and ticked */
 
-.fc-vices {
-    container-type: inline-size;
-    width: 100%;
-    max-width: 420px;
-    display: grid;
-    justify-items: center;
-    gap: 0.25rem;
-}
-
-/* An arrow takes 0.9s to cross a row; it passes the centre of column c about (c + 0.5) × 0.15s after the row starts */
-.fc-vice-row {
-    --row-start: calc(1.1s + var(--r, 0) * 0.35s);
-    position: relative;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 6px;
-    padding: 0 6px;
-    overflow: hidden;
-}
-
-.fc-vice {
-    position: relative;
-    justify-self: center;
-    padding: 0.75em 0;
-    font-family: var(--font-body);
-    font-size: clamp(10px, 3.5cqi, 14px);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.fc-vice-word {
-    display: inline-block;
-    opacity: 0.4;
-}
-
-.fc-vice::after {
-    content: '';
-    position: absolute;
-    left: -8%;
-    right: -8%;
-    top: 50%;
-    height: 2px;
-    margin-top: -1px;
-    border-radius: 2px;
-    background-color: var(--fc-accent);
-    transform: rotate(-4deg);
-    transform-origin: left center;
-}
-
-.fc-slide.is-active .fc-vice-word {
-    animation:
-        fc-vice-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) calc(0.3s + (var(--r, 0) * 5 + var(--c, 0)) * 0.05s) both,
-        fc-vice-dim 0.35s ease calc(var(--row-start) + (var(--c, 0) + 0.5) * 0.15s + 0.05s) forwards;
-}
-
-.fc-slide.is-active .fc-vice::after {
-    animation: fc-strike 0.28s cubic-bezier(0.3, 0, 0.2, 1) calc(var(--row-start) + (var(--c, 0) + 0.5) * 0.15s - 0.04s) both;
-}
-
-.fc-vice-flight {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0;
-}
-
-.fc-vice-arrow {
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    display: block;
-    width: 72px;
-    height: 12px;
-    margin-top: -6px;
-}
-
-.fc-slide.is-active .fc-vice-flight {
-    animation: fc-flight 0.9s linear var(--row-start) both;
-}
-
-.fc-virtue {
-    position: relative;
-    isolation: isolate;
-    margin-top: 0.5rem;
+.fc-chopda-word {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 9cqi, 2.4rem);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: 0.22em;
-    padding-left: 0.22em; /* balances the trailing letter-spacing */
-    text-transform: uppercase;
-    white-space: nowrap;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
-.fc-virtue::before {
-    content: '';
-    position: absolute;
-    inset: -60% -12%;
-    z-index: -1;
-    background: radial-gradient(closest-side, rgba(242, 163, 58, 0.3), transparent);
+.fc-open {
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
 }
 
-.fc-virtue-text {
-    display: inline-block;
-    color: #F6C66B;
-    background-image: linear-gradient(105deg, #F2A33A 0%, #F6C66B 35%, #FFF3D6 50%, #F6C66B 65%, #F2A33A 100%);
-    background-size: 300% 100%;
-    background-position: 100% 0;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: fc-shine 5s ease-in-out 1s infinite;
+.fc-slide.is-active .fc-book-in {
+    animation: fc-book-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
-.fc-slide.is-active .fc-virtue {
-    animation: fc-virtue-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both;
+.fc-slide.is-active .fc-open {
+    animation: fc-open 0.9s cubic-bezier(0.3, 0.7, 0.2, 1) 0.6s both;
 }
 
-@keyframes fc-vice-in {
+.fc-slide.is-active .fc-word {
+    animation: fc-word 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) both;
+}
+
+.fc-slide.is-active .fc-write {
+    animation: fc-draw 0.35s ease-out var(--d, 0s) both;
+}
+
+@keyframes fc-book-in {
     from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(18px);
     }
+}
 
-    to {
-        opacity: 1;
+@keyframes fc-open {
+    from {
+        transform: scaleX(0.04) skewY(-6deg);
+    }
+}
+
+@keyframes fc-word {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+}
+
+/* Path of diyas — the goal flag flutters */
+
+.fc-flag {
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
+    animation: fc-flag 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes fc-flag {
+    from {
         transform: none;
     }
-}
-
-@keyframes fc-vice-dim {
-    from {
-        opacity: 1;
-    }
 
     to {
-        opacity: 0.4;
+        transform: scaleX(0.86) skewY(6deg);
     }
 }
 
-@keyframes fc-strike {
-    from {
-        transform: rotate(-4deg) scaleX(0);
-    }
-}
-
-@keyframes fc-flight {
-    0% {
-        opacity: 0;
-        transform: translateX(0);
-    }
-
-    8%,
-    85% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateX(calc(100% + 72px));
-    }
-}
-
-@keyframes fc-virtue-in {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(0.94);
-    }
-}
-
-@keyframes fc-shine {
-    0% {
-        background-position: 100% 0;
-    }
-
-    60%,
-    100% {
-        background-position: 0 0;
-    }
-}
-
-@media (forced-colors: active) {
-    .fc-virtue-text {
-        background-image: none;
-        -webkit-text-fill-color: currentColor;
-    }
-}
-
-/* Dawn — the sun rises from the water, rays turn slowly, gold leaves drift down */
+/* Sunrise — the sun climbs between the hills, rays turn slowly, birds fly across */
 
 .fc-slide.is-active .fc-rise-sun {
-    animation: fc-sun-rise 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    animation: fc-sun-rise 2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
 }
 
 .fc-rays {
@@ -807,69 +948,106 @@
     animation: fc-spin 90s linear infinite;
 }
 
-.fc-ripple {
-    opacity: 0.5;
-    animation: fc-ripple 3.2s ease-in-out var(--d, 0s) infinite alternate;
+.fc-birds {
+    animation: fc-birds 18s linear -6s infinite;
 }
 
-.fc-leaf-fall {
-    animation: fc-leaf-fall var(--dur, 12s) linear var(--d, 0s) infinite;
-}
-
-.fc-leaf-sway {
+.fc-flap {
     transform-box: fill-box;
-    transform-origin: 50% 0;
-    animation: fc-leaf-sway 3.4s ease-in-out var(--d, 0s) infinite alternate;
+    transform-origin: 50% 100%;
+    animation: fc-flap 0.6s ease-in-out var(--d, 0s) infinite alternate;
 }
 
 @keyframes fc-sun-rise {
     from {
-        transform: translateY(84px);
+        transform: translateY(110px);
     }
 }
 
-@keyframes fc-spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes fc-ripple {
+@keyframes fc-birds {
     from {
-        opacity: 0.25;
-        transform: translateX(-6px);
+        transform: translateX(-120px);
     }
 
     to {
-        opacity: 0.7;
-        transform: translateX(6px);
+        transform: translateX(420px);
     }
 }
 
-@keyframes fc-leaf-fall {
+@keyframes fc-flap {
+    from {
+        transform: scaleY(1);
+    }
+
+    to {
+        transform: scaleY(-0.4);
+    }
+}
+
+/* Aarti thali — circles gently (two offset sways make a circle) while petals drift down */
+
+.fc-aarti-x {
+    animation: fc-aarti-x 4s ease-in-out infinite alternate;
+}
+
+.fc-aarti-y {
+    animation: fc-aarti-y 4s ease-in-out -2s infinite alternate;
+}
+
+.fc-fall {
+    animation: fc-fall var(--dur, 10s) linear var(--d, 0s) infinite;
+}
+
+.fc-flutter {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: fc-flutter 3s ease-in-out var(--d, 0s) infinite alternate;
+}
+
+@keyframes fc-aarti-x {
+    from {
+        transform: translateX(-10px);
+    }
+
+    to {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes fc-aarti-y {
+    from {
+        transform: translateY(-5px);
+    }
+
+    to {
+        transform: translateY(5px);
+    }
+}
+
+@keyframes fc-fall {
     0% {
         opacity: 0;
         transform: translateY(0);
     }
 
-    10%,
-    80% {
-        opacity: 0.9;
+    8%,
+    85% {
+        opacity: 0.95;
     }
 
     100% {
         opacity: 0;
-        transform: translateY(300px);
+        transform: translateY(350px);
     }
 }
 
-@keyframes fc-leaf-sway {
+@keyframes fc-flutter {
     from {
-        transform: translateX(-14px) rotate(-28deg);
+        transform: translateX(-14px) rotate(-40deg);
     }
 
     to {
-        transform: translateX(14px) rotate(24deg);
+        transform: translateX(14px) rotate(50deg);
     }
 }
 
@@ -896,7 +1074,8 @@
     .fc-panel {
         background-image:
             radial-gradient(1200px 280px at 50% 118%, var(--fc-horizon), transparent),
-            radial-gradient(300px circle at 6% 100%, rgba(158, 124, 80, 0.18), transparent);
+            radial-gradient(300px circle at 6% 100%, rgba(158, 124, 80, 0.18), transparent),
+            var(--fc-sky, none);
     }
 
     .fc-slide {
@@ -914,15 +1093,13 @@
         background-image: radial-gradient(closest-side, var(--fc-glow), transparent);
     }
 
-    .fc-art-bow,
-    .fc-art-sun,
-    .fc-art-leaves {
+    .fc-art-main {
         width: auto;
         height: 100%;
     }
 
-    /* Keeps the advisory slide and its risk disclaimer uncluttered */
-    .fc-slide[data-art="vices"] .fc-art {
+    /* Keeps the advisory slides and their risk disclaimer uncluttered */
+    .fc-slide.has-note .fc-art {
         display: none;
     }
 }
@@ -943,8 +1120,7 @@
 .festive-carousel[data-still="true"] .fc-anim,
 .festive-carousel[data-offscreen="true"] .fc-anim,
 .festive-carousel[data-offscreen="true"] .fc-seq,
-.festive-carousel[data-offscreen="true"] .fc-rise,
-.festive-carousel[data-offscreen="true"] .fc-vice::after {
+.festive-carousel[data-offscreen="true"] .fc-rise {
     animation-play-state: paused;
 }
 
@@ -952,25 +1128,12 @@
 @media (prefers-reduced-motion: reduce) {
     .festive-carousel .fc-anim,
     .festive-carousel .fc-seq,
-    .festive-carousel .fc-rise,
-    .festive-carousel .fc-vice::after {
+    .festive-carousel .fc-rise {
         animation: none !important;
     }
 
-    .festive-carousel .fc-arrow {
-        opacity: 1;
-        transform: translateX(-36px);
-    }
-
-    .festive-carousel .fc-string-top {
-        transform: rotate(20.56deg) scaleY(1.068);
-    }
-
-    .festive-carousel .fc-string-bottom {
-        transform: rotate(-20.56deg) scaleY(1.068);
-    }
-
-    .festive-carousel .fc-burst {
+    .festive-carousel .fc-burst,
+    .festive-carousel .fc-glint {
         opacity: 0.9;
     }
 
@@ -978,9 +1141,9 @@
         opacity: 0.7;
     }
 
-    .festive-carousel .fc-leaf-fall {
+    .festive-carousel .fc-fall {
         opacity: 0.9;
-        transform: translateY(110px);
+        transform: translateY(var(--py, 100px));
     }
 
     .fc-panel,
