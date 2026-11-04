@@ -1,23 +1,36 @@
 import React, { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
-import { DUSSEHRA_SLIDES, isCampaignLive, msUntilNextBoundary } from './festiveCampaign';
-import { GoldLeaves, RisingSun, Sparks, Toran, VictoryBow } from './FestiveMotifs';
+import { getCampaignPhase, getPhaseByKey, msUntilNextBoundary } from './festiveCampaign';
+import {
+    AartiThali,
+    Chopda,
+    CoinStack,
+    DiyaPath,
+    DiyaRow,
+    KalashCoins,
+    LampBook,
+    Lanterns,
+    Rangoli,
+    RisingSun,
+    Sparks,
+    Toran
+} from './FestiveMotifs';
 import './FestiveCarousel.css';
 
 const SWIPE_THRESHOLD = 50;
 const MAX_TIMEOUT = 2147483647;
 
-// Dev-only preview outside the campaign window: ?fcPreview=on | off
-const DEV_PREVIEW = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('fcPreview') : null;
+// Dev-only preview of any day outside its date: ?fcPhase=dhanteras | choti | diwali | newyear | bhaidooj | off
+const DEV_PHASE = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('fcPhase') : null;
 
-const getLive = () => {
-    if (DEV_PREVIEW === 'on') return true;
-    if (DEV_PREVIEW === 'off') return false;
-    return isCampaignLive(Date.now());
+const getPhase = () => {
+    if (DEV_PHASE === 'off') return null;
+    return getPhaseByKey(DEV_PHASE) ?? getCampaignPhase(Date.now());
 };
 
-// Re-renders at each campaign boundary, so an open tab shows the carousel when it starts and hides it when it ends.
+// Re-renders at each boundary, so an open tab shows the carousel when it starts, switches day at midnight IST
+// and hides it when the campaign ends.
 const subscribeClock = (onChange) => {
     let timer;
     const arm = () => {
@@ -61,56 +74,29 @@ const isKeyboardFocus = (element) => {
     }
 };
 
-const VictoryArt = () => (
-    <>
-        <VictoryBow className="fc-art-bow" />
-        <Sparks className="fc-art-sparks" />
-    </>
-);
-
-// Ravana's ten heads as ten habits of bad investing, struck out one by one by a passing arrow
-const VICE_ROWS = [
-    ['Greed', 'Fear', 'FOMO', 'Panic', 'Hype'],
-    ['Tips', 'Rumour', 'Haste', 'Ego', 'Herd']
-];
-
-const ViceArrow = () => (
-    <svg className="fc-vice-arrow" viewBox="0 0 72 12" focusable="false">
-        <path d="M0 6H40" stroke="#FFE3A3" strokeWidth="1.5" strokeLinecap="round" opacity="0.45" />
-        <path d="M24 6L18 1H26L31 6ZM24 6L18 11H26L31 6Z" fill="#B3261E" />
-        <rect x="22" y="5" width="42" height="2" rx="1" fill="#FFE3A3" />
-        <path d="M60 1.5L72 6L60 10.5L63 6Z" fill="#F6C66B" />
-    </svg>
-);
-
-const VicesArt = () => (
-    <div className="fc-vices">
-        {VICE_ROWS.map((row, r) => (
-            <div key={r} className="fc-vice-row" style={{ '--r': r }}>
-                {row.map((word, c) => (
-                    <span key={word} className="fc-vice" style={{ '--c': c }}>
-                        <span className="fc-vice-word fc-seq">{word}</span>
-                    </span>
-                ))}
-                <span className="fc-vice-flight fc-seq">
-                    <ViceArrow />
-                </span>
-            </div>
-        ))}
-        <span className="fc-virtue fc-seq">
-            <span className="fc-virtue-text fc-anim">Discipline</span>
-        </span>
-    </div>
-);
-
-const DawnArt = () => (
-    <>
-        <RisingSun className="fc-art-sun" />
-        <GoldLeaves className="fc-art-leaves" />
-    </>
-);
-
-const ART = { victory: VictoryArt, vices: VicesArt, dawn: DawnArt };
+const ART = {
+    kalash: () => (
+        <>
+            <KalashCoins className="fc-art-main" />
+            <Sparks className="fc-art-sparks" />
+        </>
+    ),
+    coins: () => <CoinStack className="fc-art-main" />,
+    book: () => <LampBook className="fc-art-main" />,
+    diyas: () => (
+        <>
+            <DiyaRow className="fc-art-main" />
+            <Sparks className="fc-art-sparks" />
+        </>
+    ),
+    path: () => <DiyaPath className="fc-art-main" />,
+    lanterns: () => <Lanterns className="fc-art-main" />,
+    chopda: () => <Chopda className="fc-art-main" />,
+    sunrise: () => <RisingSun className="fc-art-main" />,
+    rangoli: () => <Rangoli className="fc-art-main" />,
+    thali: () => <AartiThali className="fc-art-main" />,
+    family: () => <DiyaRow className="fc-art-main" variant="family" />
+};
 
 const SlideCta = ({ cta }) => {
     const className = `fc-btn${cta.ghost ? ' fc-btn-ghost' : ''}`;
@@ -132,7 +118,7 @@ const SlideCta = ({ cta }) => {
     return <a href={cta.href} className={className}>{cta.label}</a>;
 };
 
-const Carousel = ({ slides }) => {
+const Carousel = ({ slides, theme }) => {
     const [active, setActive] = useState(0);
     const [userPaused, setUserPaused] = useState(null); // null = follow prefers-reduced-motion
     const [hovered, setHovered] = useState(false);
@@ -211,7 +197,7 @@ const Carousel = ({ slides }) => {
             data-still={!rotationOn}
             data-offscreen={offscreen}
         >
-            <div className="fc-panel" data-theme={slides[active].theme} onFocus={handleFocus} onBlur={handleBlur}>
+            <div className="fc-panel" data-theme={theme} onFocus={handleFocus} onBlur={handleBlur}>
                 <Toran className="fc-toran" />
 
                 <div className="fc-controls container">
@@ -263,7 +249,7 @@ const Carousel = ({ slides }) => {
                         return (
                             <div
                                 key={slide.id}
-                                className={`fc-slide container${i === active ? ' is-active' : ''}`}
+                                className={`fc-slide container${i === active ? ' is-active' : ''}${slide.note ? ' has-note' : ''}`}
                                 data-art={slide.art}
                                 role="group"
                                 aria-roledescription="slide"
@@ -294,9 +280,10 @@ const Carousel = ({ slides }) => {
 };
 
 const FestiveCarousel = () => {
-    const live = useSyncExternalStore(subscribeClock, getLive);
-    if (!live) return null;
-    return <Carousel slides={DUSSEHRA_SLIDES} />;
+    const phase = useSyncExternalStore(subscribeClock, getPhase);
+    if (!phase) return null;
+    // Keyed by day, so a new day starts again from its first slide
+    return <Carousel key={phase.key} slides={phase.slides} theme={phase.theme} />;
 };
 
 export default FestiveCarousel;
