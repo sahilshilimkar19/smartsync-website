@@ -84,7 +84,7 @@ const MonthlyDisclosures = () => {
                                 Annexure B – Formats for investors complaints data to be disclosed monthly by IAs on their website/mobile application
                             </p>
                             <p id="md-current-period" style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
-                                Data for the month ending September 2026
+                                Data for the month ending October 2026
                             </p>
 
                             {/* Table 1 — Current Month (scroll wrappers are focusable so keyboard users can scroll them) */}
@@ -117,11 +117,11 @@ const MonthlyDisclosures = () => {
                                             <td style={tdStyle}>2</td>
                                             <td style={tdLeftStyle}>SEBI (SCORES)</td>
                                             <td style={tdStyle}>1</td>
-                                            <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>0</td>
                                             <td style={tdStyle}>1</td>
                                             <td style={tdStyle}>0</td>
-                                            <td style={tdStyle}>NA</td>
+                                            <td style={tdStyle}>0</td>
+                                            <td style={tdStyle}>30</td>
                                         </tr>
                                         <tr>
                                             <td style={tdStyle}>3</td>
@@ -137,11 +137,11 @@ const MonthlyDisclosures = () => {
                                             <td style={{ ...tdStyle, fontWeight: 700 }} colSpan={1}></td>
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>NA</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>30</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -165,18 +165,18 @@ const MonthlyDisclosures = () => {
                                     <tbody>
                                         {[
                                             // Last 12 months only: [Sr No., Month, Carried forward, Received, Resolved, Pending]
-                                            ['1', 'October 2025', 0, 0, 0, 0],
-                                            ['2', 'November 2025', 0, 0, 0, 0],
-                                            ['3', 'December 2025', 0, 0, 0, 0],
-                                            ['4', 'January 2026', 0, 0, 0, 0],
-                                            ['5', 'February 2026', 0, 0, 0, 0],
-                                            ['6', 'March 2026', 0, 0, 0, 0],
-                                            ['7', 'April 2026', 0, 0, 0, 0],
-                                            ['8', 'May 2026', 0, 0, 0, 0],
-                                            ['9', 'June 2026', 0, 0, 0, 0],
-                                            ['10', 'July 2026', 0, 0, 0, 0],
-                                            ['11', 'August 2026', 0, 0, 0, 0],
-                                            ['12', 'September 2026', 0, 1, 0, 1],
+                                            ['1', 'November 2025', 0, 0, 0, 0],
+                                            ['2', 'December 2025', 0, 0, 0, 0],
+                                            ['3', 'January 2026', 0, 0, 0, 0],
+                                            ['4', 'February 2026', 0, 0, 0, 0],
+                                            ['5', 'March 2026', 0, 0, 0, 0],
+                                            ['6', 'April 2026', 0, 0, 0, 0],
+                                            ['7', 'May 2026', 0, 0, 0, 0],
+                                            ['8', 'June 2026', 0, 0, 0, 0],
+                                            ['9', 'July 2026', 0, 0, 0, 0],
+                                            ['10', 'August 2026', 0, 0, 0, 0],
+                                            ['11', 'September 2026', 0, 1, 0, 1],
+                                            ['12', 'October 2026', 1, 0, 1, 0],
                                         ].map(([sr, month, carried, received, resolved, pending]) => (
                                             <tr key={sr}>
                                                 <td style={tdStyle}>{sr}</td>
@@ -192,8 +192,8 @@ const MonthlyDisclosures = () => {
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -229,16 +229,16 @@ const MonthlyDisclosures = () => {
                                             <td style={tdLeftStyle}>2026-27</td>
                                             <td style={tdStyle}>0</td>
                                             <td style={tdStyle}>1</td>
-                                            <td style={tdStyle}>0</td>
                                             <td style={tdStyle}>1</td>
+                                            <td style={tdStyle}>0</td>
                                         </tr>
                                         <tr>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}></td>
                                             <td style={{ ...tdLeftStyle, fontWeight: 700 }}>Grand Total</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
-                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                             <td style={{ ...tdStyle, fontWeight: 700 }}>1</td>
+                                            <td style={{ ...tdStyle, fontWeight: 700 }}>0</td>
                                         </tr>
                                     </tbody>
                                 </table>
