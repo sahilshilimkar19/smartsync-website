@@ -37,6 +37,13 @@ const teamMembers = [
         image: "/team/sahil.jpeg",
         bio: "Sahil Shilimkar specializes in building intelligent systems powered by Artificial Intelligence and Machine Learning. He focuses on developing data-driven solutions that enhance research workflows, automate complex data analysis, and generate actionable insights from large financial datasets. With experience in predictive modeling, natural language processing, and data engineering, Sahil works on building scalable AI tools that support smarter decision-making and efficient information processing.",
     },
+    {
+        name: "Prateek Pandey",
+        role: "Equity Research Intern",
+        image: "/team/prateek.jpeg",
+        imagePosition: "center 25%",
+        bio: "Prateek Pandey is an Equity Research Intern responsible for conducting company and sector research, analyzing financial statements and business performance, tracking stock market trends, evaluating investment opportunities, performing basic financial and valuation analysis, and preparing equity research reports, investment summaries and presentations to support informed investment decisions."
+    },
 ];
 
 const OurTeam = () => {
@@ -72,7 +79,7 @@ const OurTeam = () => {
                                         <img
                                             src={member.image}
                                             alt=""
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: member.imagePosition || 'center' }}
                                         />
                                     </div>
                                 )}
