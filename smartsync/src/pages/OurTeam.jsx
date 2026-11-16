@@ -37,31 +37,6 @@ const teamMembers = [
         image: "/team/sahil.jpeg",
         bio: "Sahil Shilimkar specializes in building intelligent systems powered by Artificial Intelligence and Machine Learning. He focuses on developing data-driven solutions that enhance research workflows, automate complex data analysis, and generate actionable insights from large financial datasets. With experience in predictive modeling, natural language processing, and data engineering, Sahil works on building scalable AI tools that support smarter decision-making and efficient information processing.",
     },
-    {
-        name: "Madhav Rathi",
-        role: "Senior Research Analyst",
-        image: "/team/madhav.jpg",
-        bio: "Madhav Rathi focuses on generating high-conviction stock ideas through fundamental research and sector analysis. He follows a structured top-down approach, identifying macro and industry trends before evaluating companies and building investment theses. Madhav combines traditional research with AI-driven tools to improve insight generation and research efficiency, with a strong focus on businesses benefiting from India’s long-term growth trends.",
-    },
-    {
-        name: "Sandeep Agrawal",
-        role: "Equity Research Intern",
-        image: "/team/sandeep.png",
-        bio: "Sandeep Agrawal is an Equity Research Intern focused on building strong analytical capabilities through fundamental research and industry analysis. He prepares financial and concall analyses for various companies and contributes to in-depth financial content covering markets and businesses. Driven by continuous learning and a deep curiosity about market dynamics, Sandeep is keen on understanding businesses positioned to benefit from India’s long-term growth trends.",
-    },
-    {
-        name: "Chirag Pursnani",
-        role: "Equity Research Intern",
-        image: "/team/chirag.jpeg",
-        bio: "Chirag Pursnani is an Equity Research Intern, Finance Professional, and CA Finalist with a strong interest in equity research, business valuation, and financial analysis. Having cleared CFA Level I and appeared for CFA Level II, he is dedicated to building expertise in fundamental research and investment analysis. Through disciplined learning and a data-driven approach, he focuses on evaluating businesses, identifying long-term investment opportunities, and delivering objective, well-reasoned research to support informed investment decisions.",
-    },
-    {
-        name: "Raghav Bhatia",
-        role: "Equity Research Intern",
-        image: "/team/raghav.png",
-        bio: "Raghav Bhatia is an Equity Research Intern, CFA Level III Candidate, and Economics graduate with a strong passion for fundamental research and business analysis. He specializes in financial statement analysis, industry research, earnings conference call analysis, and business model evaluation to develop well-researched investment insights. By combining analytical thinking with AI-powered research tools, he continuously enhances the depth, accuracy, and efficiency of his research while strengthening his expertise in long-term investing.",
-    },
-
 ];
 
 const OurTeam = () => {
